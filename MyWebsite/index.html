@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <title>MyWebsite</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.2.1/buzz.min.js">
+</script>
+
+</head>
+
+<style>
+    body{
+        background-color: #472401;
+        place-items: center;
+    }
+
+    div {
+        background-color: #8B461E;
+        width: 620px;
+        border-radius: 10px;
+        padding: 50px;
+        margin: 200px 340px 200px 340px;
+    }
+    img:hover {
+        opacity: 0.5;
+    }
+</style>
+
+<body>
+ <div>  
+
+ <img id="picture"  src="img/picture_icon.png" style=" height: 100px; padding: 20px;"/>
+ <img id="savings"  src="img/savings_icon.png" style=" padding: 20px;"/>
+ <img id="journal"  src="img/journal_icon.png" style=" padding: 20px;"/>
+ <img id="list"     src="img/list_icon.png"    style=" padding: 20px;"/>
+
+ <img id="share"     src="img/share_icon.png"    style=" padding: 20px 20px;"/>
+ <img id="water"     src="img/water_icon.png"    style=" padding: 20px 20px;"/>
+ <img id="wellness"  src="img/wellness_icon.png" style=" height: 100px; padding: 20px 20px;"/>
+ <img id="shopping"  src="img/shopping_icon.png" style=" padding: 20px 20px;"/>
+ 
+ <img id="calendar" src="img/calendar_icon.png" style="  padding: 20px;"/>
+ <img id="coffee"   src="img/coffee_icon.png"   style="  padding: 20px;"/>
+ <img id="goals"    src="img/goals_icon.png"    style="  padding: 20px;"/>
+ <img id="music"    src="img/music_icon.png"    style="  padding: 20px;"/>
+
+ <img id="books"   src="img/books_icon.png"  style=" width: 120px; padding: 20px 10px;"/>
+ <img id="movie"   src="img/movie_icon.png"  style=" padding: 20px;"/>
+ <img id="tv"      src="img/tv_icon.png"     style=" width: 120px; padding: 20px 10px;"/>
+ <img id="dining"  src="img/dining_icon.png" style=" width:120px; padding: 20px 10px;"/>
+
+</div> 
+
+<script>
+    var s_picture  = new buzz.sound("sound/camera_sound.mp3");
+    var s_ding     = new buzz.sound("sound/ding_sound.mp3");
+    var s_write    = new buzz.sound("sound/writing_sound.mp3");
+    var s_paper    = new buzz.sound("sound/paper_sound.mp3");
+
+    var s_water    = new buzz.sound("sound/water_sound.mp3");
+    var s_wellness = new buzz.sound("sound/wellness_sound.mp3");
+    var s_shopping = new buzz.sound("sound/shopping_sound.mp3");
+
+    var s_calendar = new buzz.sound("sound/paper_sound2.mp3");
+    var s_coffee   = new buzz.sound("sound/coffee_sound.mp3");
+    var s_music    = new buzz.sound("sound/music_sound.mp3");
+    var s_movie    = new buzz.sound("sound/movie_sound.mp3");
+    var s_tv       = new buzz.sound("sound/tv_sound.mp3");
+    
+
+ window.onload = function() {
+    document.getElementById("picture").addEventListener("click", function() {s_picture.play();});
+    document.getElementById("savings").addEventListener("click", function() {s_ding.play();});
+    document.getElementById("journal").addEventListener("click", function() {s_write.play();});
+    document.getElementById("list").addEventListener("click",    function() {s_paper.play();});
+    
+    document.getElementById("share").addEventListener("click",    function() {s_picture.play();});
+    document.getElementById("water").addEventListener("click",    function() {s_water.play();});
+    document.getElementById("wellness").addEventListener("click", function() {s_tv.play();});
+    document.getElementById("shopping").addEventListener("click", function() {s_shopping.play();});
+
+    document.getElementById("calendar").addEventListener("click", function() {s_calendar.play();});
+    document.getElementById("coffee").addEventListener("click",   function() {s_coffee.play();});
+    document.getElementById("goals").addEventListener("click",    function() {s_wellness.play();});
+    document.getElementById("music").addEventListener("click",    function() {s_music.play();});
+
+    document.getElementById("books").addEventListener("click",  function() {s_calendar.play();});
+    document.getElementById("movie").addEventListener("click",  function() {s_paper.play();});
+    document.getElementById("tv").addEventListener("click",     function() {s_movie.play();});
+    document.getElementById("dining").addEventListener("click", function() {s_ding.play();}); //replace//
+    }
+
+</script>>
+
+</body>
+</html>
