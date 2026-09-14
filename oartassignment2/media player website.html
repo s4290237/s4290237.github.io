@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ARTWeBSITE</title>
+   
+</head>
+<body>
+    <canvas id="Canvas"></canvas>
+<!-- hide webcam livefeed -->
+    <div id="camera-container" style=" display: none;"> 
+      <video id="webcam" autoplay playsinline></video>
+    </div>
+
+    <style> 
+        button {
+            border: transparent;
+            background-color: transparent;
+            position: absolute;
+            top: 215px;
+            left: 295px;
+        }
+
+        img {
+            width: 50px;
+            position: absolute;
+        }
+
+        /* video {
+            filter: hue-rotate(200deg);
+            filter: constrast(200%);
+            background-image: radial-gradient(red, yellow, green);
+        } */
+    </style>
+
+    
+    <img src="pig.png" style="top: 215px; left: 175px;">
+    <img src="pig.png" style="top: 215px; left: 235px;">
+    <button onclick="reloadPage()"><img src="pig.png" style=" width: 50px"></button>
+    <img src="pig.png" style="top: 215px; left: 365px;">
+   
+</body>
+
+<script>
+    const cnv = document.getElementById('Canvas');
+    const ctx = cnv.getContext('2d');
+    cnv.width = 1640;
+    cnv.height = 1480;
+
+function reloadPage() {
+    location.reload();
+}
+
+    const video = document.getElementById('webcam');
+// Request permission to access the video stream
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    .then((stream) => {
+        // Assign the camera stream to the video element
+        video.srcObject = stream;
+    })
+    
+
+
+    // .catch((error) => {
+    //     console.error("Error accessing the camera: ", error);
+    //     alert("Could not access camera. Please check your permissions.");
+    // });
+
+    cnv.style.cursor = 'none';
+
+    const cursorImg = new Image();
+    cursorImg.src = 'goals_icon.png';
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+ cnv.addEventListener('mousemove', (draw) => {
+  const rect = cnv.getBoundingClientRect();
+  mouseX = draw.clientX - rect.left;
+  mouseY = draw.clientY - rect.top;
+  
+  redrawCanvas();
+  });
+
+   function redrawCanvas() {
+//   ctx.clearRect(0, 0, cnv.width, cnv.height);
+  
+  // Draw your scene or objects here...
+  
+  // Draw the custom mouse icon on top
+  ctx.drawImage(cursorImg, mouseX, mouseY, 30, 30);
+}
+
+    let x = -100
+    cnv.onpointerdown = function draw() {
+        // ctx.drawImage(video,0,0,cnv.width,cnv.height);
+        // ctx.drawImage(video, 0, 240, (x % 800 - 160), 120);
+        // ctx.drawImage(video, mouseX, mouseY, 160, 120)
+        ctx.drawImage(video, (x % 800 - 160), 120, 160, 120);
+        ctx.drawImage(video, 0, (x % 600 - 120), 160, 120);
+        ctx.drawImage(video, -(x % 800 - 640), 0, 160, 120);
+        ctx.drawImage(video, 480, -(x % 600 - 480), 160, 120);
+        
+        x++
+        ctx.fillRect(0, 0, 640, 480);
+        ctx.fillStyle = 'rgba(100, 0, 200, 0.2)';
+
+        requestAnimationFrame (draw)
+    }
+
+    function draw() {
+        
+    }
+
+
+    
+
+
+
+
+
+//     function copy() {
+//     const imgData = ctx.getImageData(video, x % 500 - 100, 50, 320, 240);
+//     ctx.putImageData(imgData, 50, 70);
+//     x++
+//     requestAnimationFrame (copy)
+// }
+// requestAnimationFrame (copy)
+</script>
+
+
+</html>
