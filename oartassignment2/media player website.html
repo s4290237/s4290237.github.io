@@ -13,12 +13,19 @@
     </div>
 
     <style> 
+
+        body {
+           width: 1000px;
+           max-width: 100%;
+           background-image: linear-gradient(to bottom, blue, violet);
+        }
+
         button {
             border: transparent;
             background-color: transparent;
             position: absolute;
-            top: 215px;
-            left: 295px;
+            top: 500px;
+            left: 595px;
         }
 
         img {
@@ -26,30 +33,56 @@
             position: absolute;
         }
 
+        /* canvas {
+          position: relative;
+          top: 50px;
+          left: 30px;
+          padding: 50px;
+          
+        } */
         /* video {
             filter: hue-rotate(200deg);
             filter: constrast(200%);
             background-image: radial-gradient(red, yellow, green);
         } */
     </style>
+<!-- 
+   <img id ="pig" src ="pig.png">
+   <link id ="text" src ="nounlist.txt"> -->
+
+   <button onclick ="drawVideo()"><img src ="play.png" style ="width: 20px; top: 600px; left: 500px;"></button>
+   
+   <img src ="pause.png" style ="top: 700px; left: 550px">
+
+   
 
     
-    <img src="pig.png" style="top: 215px; left: 175px;">
-    <img src="pig.png" style="top: 215px; left: 235px;">
-    <button onclick="reloadPage()"><img src="pig.png" style=" width: 50px"></button>
-    <img src="pig.png" style="top: 215px; left: 365px;">
+    <img src ="pig.png" style="top: 500px; left: 475px;">
+    <img src ="pig.png" style="top: 500px; left: 535px;">
+    <button onclick ="reloadPage()"><img src="pig.png" style=" width: 50px"></button>
+    <img src ="pig.png" style="top: 500px; left: 665px;">
+
    
 </body>
 
 <script>
     const cnv = document.getElementById('Canvas');
     const ctx = cnv.getContext('2d');
-    cnv.width = 1640;
-    cnv.height = 1480;
+    cnv.width = 1000;
+    cnv.height = 980;
 
-function reloadPage() {
-    location.reload();
-}
+    function resizeCanvas () {
+        cnv.width  = window.innerWidth
+        cnv.height = window.innerHeight
+    
+    }
+
+    resizeCanvas ()
+    window.addEventListener ('resize', resizeCanvas)
+
+    function reloadPage() {
+       location.reload();
+    }
 
     const video = document.getElementById('webcam');
 // Request permission to access the video stream
@@ -66,6 +99,8 @@ function reloadPage() {
     //     alert("Could not access camera. Please check your permissions.");
     // });
 
+
+// star mouse
     cnv.style.cursor = 'none';
 
     const cursorImg = new Image();
@@ -74,44 +109,77 @@ function reloadPage() {
     let mouseX = 0;
     let mouseY = 0;
 
- cnv.addEventListener('mousemove', (draw) => {
-  const rect = cnv.getBoundingClientRect();
-  mouseX = draw.clientX - rect.left;
-  mouseY = draw.clientY - rect.top;
+  cnv.addEventListener('mousemove', (draw) => {
+    const rect = cnv.getBoundingClientRect();
+    mouseX = draw.clientX - rect.left;
+    mouseY = draw.clientY - rect.top;
   
   redrawCanvas();
   });
 
    function redrawCanvas() {
 //   ctx.clearRect(0, 0, cnv.width, cnv.height);
-  
-  // Draw your scene or objects here...
-  
-  // Draw the custom mouse icon on top
-  ctx.drawImage(cursorImg, mouseX, mouseY, 30, 30);
-}
+     ctx.drawImage(cursorImg, mouseX, mouseY, 30, 30);
+    }
 
     let x = -100
-    cnv.onpointerdown = function draw() {
+    cnv.onpointerdown = function drawVideo() {
         // ctx.drawImage(video,0,0,cnv.width,cnv.height);
         // ctx.drawImage(video, 0, 240, (x % 800 - 160), 120);
         // ctx.drawImage(video, mouseX, mouseY, 160, 120)
-        ctx.drawImage(video, (x % 800 - 160), 120, 160, 120);
-        ctx.drawImage(video, 0, (x % 600 - 120), 160, 120);
-        ctx.drawImage(video, -(x % 800 - 640), 0, 160, 120);
-        ctx.drawImage(video, 480, -(x % 600 - 480), 160, 120);
+// video boxes moving
+        ctx.drawVideo(video, (x % 800 - 160), 120, 160, 120);
+        // ctx.drawImage(video, 0, (x % 600 - 120), 160, 120);
+        // ctx.drawImage(video, -(x % 800 - 640), 0, 160, 120);
+        // ctx.drawImage(video, 480, -(x % 600 - 480), 160, 120);
         
-        x++
-        ctx.fillRect(0, 0, 640, 480);
-        ctx.fillStyle = 'rgba(100, 0, 200, 0.2)';
+        // x++
+        // ctx.fillRect(200, 100, 700, 500);
+        // ctx.fillStyle = 'rgba(100, 0, 240, 0.1)';
+        // ctx.fillRect(220, 120, 660, 460);
+        // ctx.fillStyle = 'rgba(100, 0, 200, 0.2)';
+    
 
-        requestAnimationFrame (draw)
+        requestAnimationFrame (drawVideo)
+    }
+    requestAnimationFrame (drawVideo)
+     
+        const positions = []
+
+    cnv.addEventListener ('mousedown', (event) => {
+
+        // object literal syntax 
+        // to create a new object with x and y properties
+        const pos = {
+            x: event.offsetX,
+            y: event.offsetY
+        }
+
+        // add the new object to the positions array
+        positions.push (pos)
+    })
+
+
+       function drawFrame () {
+
+
+        // iterate through the positions array
+        positions.forEach ((pos) => {
+
+            // add a random offset to the x and y positions
+            const xPos = pos.x 
+            const yPos = pos.y
+
+            ctx.drawImage (cursorImg, xPos, yPos)
+
+        })
+
+        requestAnimationFrame (drawFrame)
     }
 
-    function draw() {
-        
-    }
-
+    requestAnimationFrame (drawFrame)
+  
+  
 
     
 

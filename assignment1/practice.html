@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>practice</title>
+</head>
+
+<body>
+    
+    <words id="words" src="nounlist.txt"></words>
+
+    <!-- The container where the random text will be printed -->
+    <div id="text-display">Loading text...</div>
+
+    <!-- Optional button to change the text manually -->
+    <button onclick="printRandomText()">Show New Text</button>
+    <script>
+        // const textOptions = document.getElementById ('words')
+        //     function printRandomText() {
+        //     // Pick a random index from the array
+        //     const randomIndex = Math.floor(Math.random()* textOptions.length);
+            
+        //     // Print the text inside the HTML element with id="text-display"
+        //     document.getElementById("text-display").innerText = textOptions[randomIndex];
+        // }
+        // window.onload = printRandomText;
+
+    function printRandomText () {
+        const randomDecimal = Math.random ()
+
+
+        const randomInteger = Math.floor (randomDecimal * 100)
+
+
+        document.getElementById("text-display").innerText = `Random Number: ${ randomInteger }`
+    }
+    window.onload = printRandomText;
+    </script>    
+</body>
+
+    
+
+
+</html> 

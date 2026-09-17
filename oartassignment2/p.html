@@ -1,0 +1,83 @@
+<html>
+
+<body>
+    <canvas id="canvasElement"></canvas>
+</body>
+
+<script>
+    document.body.style.margin = '0'
+    document.body.style.overflow = 'hidden'
+
+    const cnv = document.getElementById ('canvasElement')
+    const ctx = cnv.getContext ('2d')
+
+    function resizeCanvas () {
+        cnv.width  = window.innerWidth
+        cnv.height = window.innerHeight
+    
+    }
+
+    resizeCanvas ()
+    window.addEventListener ('resize', resizeCanvas)
+
+    // function draw() {
+
+    //     ctx.fillStyle = 'turquoise'
+    //     ctx.fillRect (0, 0, cnv.width, cnv.height)
+
+    //     const x_pos = (cnv.width -100)/2
+    //     const y_pos = (cnv.height -100)/2
+
+    //     ctx.fillStyle = 'deeppink'
+    //     ctx.fillRect(x_pos, y_pos, 100, 100)
+  
+
+    // }
+    // draw()
+
+        // create empty array in global scope
+    // to store the positions of the squares
+    const positions = []
+
+    cnv.addEventListener ('mousemove', (event) => {
+
+        // object literal syntax 
+        // to create a new object with x and y properties
+        const pos = {
+            x: event.offsetX,
+            y: event.offsetY
+        }
+
+        // add the new object to the positions array
+        positions.push (pos)
+    })
+
+
+        function drawFrame () {
+
+        // draw background
+        ctx.fillStyle = 'turquoise'
+        ctx.fillRect (0, 0, cnv.width, cnv.height)
+
+        // iterate through the positions array
+        positions.forEach ((pos) => {
+
+            // change the fill colour to deeppink
+            ctx.fillStyle = 'deeppink'
+
+            // add a random offset to the x and y positions
+            const xPos = pos.x + Math.random () 
+            const yPos = pos.y + Math.random ()
+
+            ctx.fillRect (xPos, yPos, 10, 10)
+
+        })
+
+        requestAnimationFrame (drawFrame)
+    }
+
+    requestAnimationFrame (drawFrame)
+
+
+</script>
+</html>
