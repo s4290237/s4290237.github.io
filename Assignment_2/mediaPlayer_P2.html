@@ -11,6 +11,10 @@
     <div id = "camera-container" style = "display: none;">
         <video id = "webcam" autoplay playsinline></video>
     </div>
+    <audio controls>
+        <source id ="music"  src="jazz.ogg" type="audio/ogg">
+        <source id ="music"  src="jazz.mp3" type="audio/mpeg">
+    </audio>
 
     <style>
         body {
@@ -59,7 +63,10 @@
         <div id = "drop-box"></div>
     </div>
 
+    <button onclick="playAudio()" type="button">Play Video</button>
+
     <script>
+
 
         const target = document.getElementById ('drop-box');
             // Prevent browser defaults to allow dropping
@@ -92,7 +99,16 @@
 
 
 
+
 <script>
+
+
+    let sound = document.getElementById("music"); 
+
+    function playAudio() { 
+        sound.play(); 
+    } 
+
     const cnv = document.getElementById ('Canvas');
     const ctx = cnv.getContext ('2d');
     cnv.width  = window.innerWidth
@@ -141,6 +157,11 @@
     const pause_button = document.getElementById ('pause');
 
     const pig_button = document.getElementById ('pig');
+
+    play_button.addEventListener('click', function playAudio(){
+        const sound = document.getElementById('music');
+    sound.play();
+    })
 
 
 //  moving videos
