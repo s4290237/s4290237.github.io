@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Within the context of Video Art, this webpage is an entertaining, nonfunctional 
+ and misleading Media Player. It includes a control panel and a player window 
+ that does not behave as expected. Inspired by interactive art games that give 
+ no explanation on what might happen, hopefully creating an exciting journey 
+ of discovery. -->
 
 <head>
     <title>ARTWEBSITE home</title>
-        <style>
+    <link rel="icon" href="data:,">
+</head>
+
+<body>
+    <style>
        #drop-box {
             width: 50px;
             height: 45px;
@@ -15,34 +23,33 @@
             left: 60px;
             background: transparent;
         }
-
+        
+/* pig character introduced */
         #pig {
             position: fixed;
             top: 280px;
             left: 600px;
         }
 
+/* home icon enticing the user to move pig into home */
         #home {
             position: fixed;
             top: 25px;
             left: 40px;
             width: 100px;
-
         } 
     </style>
-</head>
 
-<body>
-
+<!-- ondrop event to enter the house: takes pig to the "inside" -->
     <img id = "pig" src = "pig.png" draggable = "true" ondragstart = "dragstartHandler(event)" width = "50px">
 
     <img id = "home" src = "home.png">
     <div id = "drop-box"></div>
 
     <script>
-
+// page transition idea inspired by the Drag and Drop API in HTML
         const target = document.getElementById ('drop-box');
-        
+
         window.ondragover = (event) => event.preventDefault ();
         window.ondrop = (event) => event.preventDefault ();
 
@@ -52,7 +59,7 @@
         target.ondrop = (event) => {
             event.preventDefault();
             target.classList.remove ('hover');
-
+        // takes user to the main media player website
             if (target.ondrop) {
                 window.location.href = "https://s4290237.github.io/Assignment_2/mediaPlayer_P2.html";
             }

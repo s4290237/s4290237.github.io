@@ -3,21 +3,30 @@
 
 <head>
     <title>ARTWEBSITE</title>
-    <link rel="icon" href="data:,">
+    <link rel = "icon" href = "data:,">
 </head>
 
 <body>
     <canvas id = "Canvas"></canvas>
+
+<!-- live webcam function    -->
     <div id = "camera-container" style = "display: none;">
         <video id = "webcam" autoplay playsinline></video>
     </div>
+<!-- The video element of this website is a live webcam feed of the viewer which has 
+ been stylised with inspiration from the bouncing DVD logo after experimenting 
+ with the animateFrame function. -->
 
-    <audio id="sound3" src="flute.mp3" autoplay loop></audio>
+    <audio id = "sound3" src = "flute.mp3" autoplay loop></audio>
     <div>
-       <audio id="sound" src="jazz.mp3"></audio>
-       <audio id="sound2" src="talking.mp3"></audio>
+       <audio id = "sound" src = "jazz.mp3" loop></audio>
+       <audio id = "sound2" src = "talking.mp3" loop></audio>
     </div>
-
+<!-- Music sources — edited with Audacity:
+ Calm flute music — Music by Leigh Robinson from Pixabay
+Jazz drums music — Music by Valentin Iakovlev from Pixabay
+People talking sound effect — Sound Effect by freesound_community from Pixabay
+ -->
 
     <style>
         body {
@@ -57,10 +66,10 @@
         }
     </style>
 
-<!-- Creating a navigation bar outside of the canvas for button elements -->
-
+<!-- navigation bar outside of the canvas for button elements -->
     <div class ="sticky">
-        
+
+        <!-- png files created in Illustrator -->
         <img id = "pause" src = "pause.png" style = "height: 30px; left: 100px;">
         <img id = "play" src = "play.png" style = "height: 30px; left: 65px;">
         <img id = "stop" src ="stop.png" style = "height: 30px; left: 25px;">
@@ -70,9 +79,8 @@
     </div>
 
     
-<!-- Ondrop event to exit the house: takes pig back to the 'outside' -->
+<!-- ondrop event to exit the house: takes pig back to the "outside" -->
     <script>
-
         const target = document.getElementById ('drop-box');
 
         window.ondragover = (event) => event.preventDefault ();
@@ -90,20 +98,20 @@
                 window.location.href = "https://s4290237.github.io/Assignment_2/mediaPlayer_P1.html";
             }
         };
-
     </script>
+
 </body>
 
 <!-- Creating an interacting space with confusing controls -->
-
-
 <script>
     const cnv = document.getElementById ('Canvas');
     const ctx = cnv.getContext ('2d');
     cnv.width  = window.innerWidth
     cnv.height = window.innerHeight
 
-    // star mouse
+    // star mouse:
+    // Customised cursor for interactive and aesthetic purposes to engage and 
+    // entice the viewer to explore more attributes.
     cnv.style.cursor = 'none';
 
     const cursorImg = new Image();
@@ -133,11 +141,12 @@
     }
     requestAnimationFrame (drawFrame)
 
- // customisation of the cursor for interactive and aesthetic purposes
-
-    const video = document.getElementById('webcam');
+    // The video element of this website is a live webcam feed of the viewer which has 
+    // been stylised with inspiration from the bouncing DVD logo after experimenting 
+    // with the animateFrame function. 
+    const video = document.getElementById ('webcam');
         // Request permission to access the video stream
-        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        navigator.mediaDevices.getUserMedia ({ video: true, audio: false })
         .then((stream) => {
         // Assign the camera stream to the video element
         video.srcObject = stream;
@@ -153,33 +162,26 @@
 
 
 
-//  moving videos
+    //  moving videos
     let xP = (cnv.width /2) -320
     let yP = (cnv.height /2) -240
 
     let xspeed = 1
     let yspeed = 1
 
-
+    // bouncing DVD logo inspired effect
     play_button.addEventListener('click', function drawImagePlay() {
     
         ctx.drawImage (video, xP, yP, 160, 120);
-        // ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +425),yP, 45, 45);
-        // ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2)+260), 45, 45);
-
         // increment x position by 1
         xP = xP + xspeed
         yP = yP + yspeed
 
-        // coding train bouncing dvd logo
-
-       // conditional logic
-        // if x position is greater than canvas width
+        // conditions to stay in video box
         if (xP == (cnv.width /2) +160 || xP == (cnv.width /2) -320) {
 
             // bounce
             xspeed = xspeed * -1
-
         } 
 
         if (yP == (cnv.height /2) +120 || yP == (cnv.height /2) -240) {
@@ -188,26 +190,30 @@
         }
 
         requestAnimationFrame (drawImagePlay)
+        // once function to prevent increased speed and measurements
     }, { once: true });
 
-        pause_button.addEventListener('click', function drawImagePlay() {
+    // There was a vast range of resources that provided information for how to 
+    // replicate the DVD logo effect and found that the main goal was to create the 
+    // bounce effect. Through watching The Coding Train video ‘Coding Challenge 131: 
+    // Bouncing DVD Logo’, I was able to have a better understanding of what was 
+    // missing from the initial animation. Adding the live feed and bouncing element 
+    // hopefully will contribute a level of playfulness and engagement to the 
+    // interactive experience.
+
+
+    // star bounces
+    pause_button.addEventListener('click', function drawImagePlay() {
  
         ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +540),yP, 45, 45);
         ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2) +335), 45, 45);
 
-        // increment x position by 1
         xP = xP + xspeed
         yP = yP + yspeed
 
-        // coding train bouncing dvd logo
-
-       // conditional logic
-        // if x position is greater than canvas width
         if (xP == (cnv.width /2) +160 || xP == (cnv.width /2) -320) {
-
-            // bounce
+        
             xspeed = xspeed * -1
-
         } 
 
         if (yP == (cnv.height /2) +120 || yP == (cnv.height /2) -240) {
@@ -217,26 +223,25 @@
 
         requestAnimationFrame (drawImagePlay)
     }, { once: true });
+    // unfortunatly the measurements are not completely accurate
 
-
+    // play audio files
     pause_button.addEventListener ('click',function playAudio()  {
-     // Get the audio element by its ID
-       const audio = document.getElementById('sound');
-  
-      // Play the audio file
-       audio.play()
-
+        const audio = document.getElementById('sound');
+      
+        audio.play()
     })
 
     stop_button.addEventListener ('click',function playAudio()  {
-     // Get the audio element by its ID
         const audio = document.getElementById('sound2');
-  
-      // Play the audio file
-        audio.play()
 
+        audio.play()
     })
 
+    // The play, pause, and stop buttons have functions that are completely 
+    // unrelated to what they’re supposed to do. As the buttons continue to be 
+    // pressed more sound and visuals appear and don't turn off until the page is 
+    // refreshed or until the pig leaves the house.
 
 
     function drawImage (){
@@ -244,6 +249,7 @@
         ctx.fillRect ((cnv.width /2) -320, (cnv.height /2) -240, 640, 480);
         ctx.fillStyle = 'rgba(100, 45, 144, 0.1)';
 
+    // create gradient
         const gradient = ctx.createLinearGradient(0, 0, 0, cnv.height);
         gradient.addColorStop("0", 'red');
         gradient.addColorStop("1.0", 'white');
@@ -252,13 +258,22 @@
         ctx.strokeStyle = gradient;
         ctx.lineWidth = 5;
         ctx.strokeRect((cnv.width /2) -320, (cnv.height /2) -240, 640, 480);
+
         requestAnimationFrame (drawImage)
     }
     requestAnimationFrame (drawImage)
 
-
+    // reload page function
     pig_button.addEventListener('click', function reloadPage() {
         location.reload();
     });
-
 </script>
+
+<!-- Some ideas that I would have liked to explore further are, adding more 
+ misleading buttons, experimenting with changing to different backgrounds, 
+ maybe exploring more spaces to travel to, and including interactive drawing 
+ functions. All to build on the experience of unpredictability and 
+ progressively cause more chaos within the interactive experience. -->
+
+
+</html>
