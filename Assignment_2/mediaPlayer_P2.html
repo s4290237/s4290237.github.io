@@ -163,8 +163,8 @@
     play_button.addEventListener('click', function drawImagePlay() {
     
         ctx.drawImage (video, xP, yP, 160, 120);
-        ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +425),yP, 45, 45);
-        ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2)+260), 45, 45);
+        // ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +425),yP, 45, 45);
+        // ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2)+260), 45, 45);
 
         // increment x position by 1
         xP = xP + xspeed
@@ -189,11 +189,10 @@
         requestAnimationFrame (drawImagePlay)
     }, { once: true });
 
-        play_button.addEventListener('click', function drawImagePlay() {
-    
-        ctx.drawImage (video, xP, yP, 160, 120);
-        ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +425),yP, 45, 45);
-        ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2)+260), 45, 45);
+        pause_button.addEventListener('click', function drawImagePlay() {
+ 
+        ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +540),yP, 45, 45);
+        ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2) +335), 45, 45);
 
         // increment x position by 1
         xP = xP + xspeed
