@@ -26,11 +26,7 @@
 
     function printRandomText () {
         const randomDecimal = Math.random ()
-
-
         const randomInteger = Math.floor (randomDecimal * 100)
-
-
         document.getElementById("text-display").innerText = `Random Number: ${ randomInteger }`
     }
     window.onload = printRandomText;

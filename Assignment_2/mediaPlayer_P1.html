@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ARTWEBSITE home</title>
+        <style>
+       #drop-box {
+            width: 50px;
+            height: 45px;
+            border: 5px dashed #EE5427;
+            border-radius: 10px;
+            position: fixed;
+            top: 55px;
+            left: 60px;
+            background: transparent;
+        }
+
+        #pig {
+            position: fixed;
+            top: 280px;
+            left: 600px;
+        }
+
+        #home {
+            position: fixed;
+            top: 25px;
+            left: 40px;
+            width: 100px;
+
+        } */
+    </style>
+</head>
+
+<body>
+
+    <img id = "pig" src = "pig.png" draggable = "true" ondragstart = "dragstartHandler(event)" width = "50px">
+
+    <img id = "home" src = "home.png">
+    <div id = "drop-box"></div>
+
+    <script>
+
+        const target = document.getElementById ('drop-box');
+            // Prevent browser defaults to allow dropping
+        window.ondragover = (event) => event.preventDefault ();
+        window.ondrop = (event) => event.preventDefault ();
+
+        target.ondragover = () => target.classList.add ('hover');
+        target.ondragleave = () => target.classList.remove ('hover');
+
+        target.ondrop = (event) => {
+            event.preventDefault();
+            target.classList.remove ('hover');
+
+            // const file = event.dataTransfer.files[0];
+            
+            // Confirm it's an image file
+            if (target.ondrop) {
+                // Optional: Store the image metadata or dataURL in localStorage 
+                // so the next page can read it when it loads.
+               
+
+                // Start / Navigate to the new webpage
+                window.location.href = "file:///Users/sushidon/s4290237.github.io/Assignment_2/mediaPlayer.html";
+            }
+        };
+    </script>
+</body>
+</html>
+</body>

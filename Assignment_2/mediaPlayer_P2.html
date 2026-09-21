@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ARTWeBSITE</title>
+
+</head>
+
+<body>
+    <canvas id = "Canvas"></canvas>
+    <div id = "camera-container" style = "display: none;">
+        <video id = "webcam" autoplay playsinline></video>
+    </div>
+
+    <style>
+        body {
+            width: 1000px;
+            max-width: 100%;
+            background-image: linear-gradient(to top, blue, violet);
+        }
+
+        button {
+            border: transparent;
+            background-color: transparent;
+            position: absolute;
+            top:100px;
+            left: 350px;
+            cursor: pointer;
+        }
+
+        img {
+            position: absolute;
+        }
+
+        div.sticky {
+            position: fixed;
+            top: 20px;
+            padding: 5px;
+            border: transparent;
+        }
+
+        #drop-box {
+            width: 50px;
+            height: 45px;
+            border: 5px dashed #EE5427;
+            border-radius: 10px;
+            position: fixed;
+            top: 10px;
+            left: 220px;
+            background: transparent;
+        }
+    </style>
+
+    <div class ="sticky">
+        <img id ="pig" src= "pig.png" style=" left:150px; width: 50px;">
+        <img id ="pause" src= "pause.png" style=" height: 30px; left: 100px;">
+        <img id ="play" src= "play.png" style=" height: 30px; left: 65px;">
+        <img id ="stop" src="stop.png" style=" height: 30px; left: 25px;">
+        <div id = "drop-box"></div>
+    </div>
+
+    <script>
+
+        const target = document.getElementById ('drop-box');
+            // Prevent browser defaults to allow dropping
+        window.ondragover = (event) => event.preventDefault ();
+        window.ondrop = (event) => event.preventDefault ();
+
+        target.ondragover = () => target.classList.add ('hover');
+        target.ondragleave = () => target.classList.remove ('hover');
+
+        target.ondrop = (event) => {
+            event.preventDefault();
+            target.classList.remove ('hover');
+
+            // const file = event.dataTransfer.files[0];
+            
+            // Confirm it's an image file
+            if (target.ondrop) {
+                // Optional: Store the image metadata or dataURL in localStorage 
+                // so the next page can read it when it loads.
+               
+
+                // Start / Navigate to the new webpage
+                window.location.href = "file:///Users/sushidon/s4290237.github.io/Assignment_2/mediaPlayer_P1.html";
+            }
+        };
+    </script>
+
+
+</body>
+
+
+
+<script>
+
+    
+    const cnv = document.getElementById ('Canvas');
+    const ctx = cnv.getContext ('2d');
+    cnv.width  = window.innerWidth
+    cnv.height = window.innerHeight
+
+
+    
+
+// star mouse
+    cnv.style.cursor = 'none';
+
+    const cursorImg = new Image();
+    cursorImg.src = 'star.png';
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    cnv.addEventListener ('mousemove', (event) => {
+        const rect = cnv.getBoundingClientRect();
+        mouseX = event.clientX - rect.left;
+        mouseY = event.clientY - rect.top;
+  
+        redrawCanvas();
+    });
+    
+    function redrawCanvas() {
+        ctx.drawImage (cursorImg, mouseX, mouseY, 15, 15);
+    }
+// star stamp
+    function drawFrame(){
+
+    cnv.addEventListener ('mousedown', (event) => {
+        ctx.drawImage (cursorImg, mouseX, mouseY, 45, 45);
+    })
+        requestAnimationFrame (drawFrame);
+    }
+    requestAnimationFrame (drawFrame)
+
+    const video = document.getElementById('webcam');
+// Request permission to access the video stream
+        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then((stream) => {
+        // Assign the camera stream to the video element
+        video.srcObject = stream;
+    })
+
+    const stop_button = document.getElementById ('stop');
+    const play_button = document.getElementById ('play');
+    const pause_button = document.getElementById ('pause');
+
+    const pig_button = document.getElementById ('pig');
+
+
+//  moving videos
+    let xP = (cnv.width /2) -320
+    let yP = (cnv.height /2) -240
+
+    let xspeed = 1
+    let yspeed = 1
+
+
+    play_button.addEventListener('click', function drawImage() {
+        
+        ctx.drawImage (video, xP, yP, 160, 120);
+
+        // increment x position by 1
+        xP = xP + xspeed
+        yP = yP + yspeed
+
+        // coding train bouncing dvd logo
+
+       // conditional logic
+        // if x position is greater than canvas width
+        if (xP == (cnv.width /2) +160 || xP == (cnv.width /2) -320) {
+
+            // bounce
+            xspeed = xspeed * -1
+
+        } 
+
+        if (yP == (cnv.height /2) +120 || yP == (cnv.height /2) -240) {
+
+            yspeed = yspeed * -1
+        }
+
+        requestAnimationFrame (drawImage)
+    }, { once: true });
+
+    pause_button.addEventListener('click', function drawImage() {
+
+        ctx.drawImage (video, xP, (cnv.height /2) +117, 160, 120);
+
+
+        ctx.drawImage (video, (-xP)+((cnv.width /2) +425), (cnv.height /2) -237, 160, 120);
+
+        ctx.drawImage (cursorImg, xP +110, (cnv.height /2) -20, 45, 45);
+
+
+        ctx.drawImage (video, (cnv.width /2) -317, yP, 160, 120);
+
+        ctx.drawImage (video, (cnv.width /2) +157, (-yP)+((cnv.height /2)+260), 160, 120);
+
+
+        // increment x position by 1
+        xP = xP + xspeed
+        yP = yP + yspeed
+
+       // conditional logic
+        // if x position is greater than canvas width
+        if (xP == (cnv.width /2) +160 || xP == (cnv.width /2) -320) {
+
+            xspeed = xspeed * -1
+
+        } 
+
+        if (yP == (cnv.height /2) +120 || yP == (cnv.height /2) -240) {
+
+            yspeed = yspeed * -1
+        }
+
+        requestAnimationFrame (drawImage)
+
+    }, { once: true });
+
+        stop_button.addEventListener('click', function drawImage() {
+
+        // ctx.drawImage (video, xP, (cnv.height /2) -60, 160, 120);
+        // ctx.drawImage (video, (cnv.width /2) -80, (-yP)+((cnv.height /2)+260), 160, 120);
+
+        // ctx.drawImage (video, (-xP)+((cnv.width /2) +425), (cnv.height /2) -235, 160, 120);
+        // ctx.drawImage (video, (cnv.width /2) -160, yP, 160, 120);
+
+        // ctx.drawImage (video, (cnv.width /2) -315, (-yP)+((cnv.height /2)+260), 160, 120);
+        // ctx.drawImage (video, (cnv.width /2) +155, yP, 160, 120);
+
+        // ctx.drawImage (video, xP, yP, 160, 120);
+        ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +425),yP, 45, 45);
+        ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2)+260), 45, 45);
+        ctx.drawImage (video, (-xP)+((cnv.width /2) +425), (-yP)+((cnv.height /2)+260), 160, 120);
+
+        // increment x position by 1
+        xP = xP + xspeed
+        yP = yP + yspeed
+
+       // conditional logic
+        // if x position is greater than canvas width
+        if (xP == (cnv.width /2) +160 || xP == (cnv.width /2) -320) {
+
+            xspeed = xspeed * -1
+
+        } 
+
+        if (yP == (cnv.height /2) +120 || yP == (cnv.height /2) -240) {
+
+            yspeed = yspeed * -1
+        }
+
+        requestAnimationFrame (drawImage)
+
+    }, { once: true });
+
+
+
+    function drawImage (){
+    //  purple rectangle
+        ctx.fillRect ((cnv.width /2) -320, (cnv.height /2) -240, 640, 480);
+        ctx.fillStyle = 'rgba(100, 0, 240, 0.1)';
+
+        
+
+        const gradient = ctx.createLinearGradient(0, 0, 0, cnv.height);
+         gradient.addColorStop("0", 'red');
+         gradient.addColorStop("1.0", 'white');
+
+// Fill with gradient
+       ctx.strokeStyle = gradient;
+       ctx.lineWidth = 5;
+       ctx.strokeRect((cnv.width /2) -320, (cnv.height /2) -240, 640, 480);
+        requestAnimationFrame (drawImage)
+    }
+    requestAnimationFrame (drawImage)
+
+
+    
+    pig_button.addEventListener('click', 
+    function reloadPage() {
+        location.reload();
+    });
+
+    
+
+
+</script>

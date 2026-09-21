@@ -8,7 +8,7 @@
 <body>
     <canvas id="Canvas"></canvas>
 <!-- hide webcam livefeed -->
-    <div id="camera-container" style=" display: none;"> 
+    <!-- <div id="camera-container" style=" display: none;">  -->
       <video id="webcam" autoplay playsinline></video>
     </div>
 
@@ -40,17 +40,18 @@
           padding: 50px;
           
         } */
-        /* video {
+        video {
             filter: hue-rotate(200deg);
             filter: constrast(200%);
-            background-image: radial-gradient(red, yellow, green);
-        } */
+            border-radius: 50%;
+
+        }
     </style>
 <!-- 
    <img id ="pig" src ="pig.png">
    <link id ="text" src ="nounlist.txt"> -->
 
-   <button onclick ="drawVideo()"><img src ="play.png" style ="width: 20px; top: 600px; left: 500px;"></button>
+   
    
    <img src ="pause.png" style ="top: 700px; left: 550px">
 
@@ -71,14 +72,14 @@
     cnv.width = 1000;
     cnv.height = 980;
 
-    function resizeCanvas () {
-        cnv.width  = window.innerWidth
-        cnv.height = window.innerHeight
+    // function resizeCanvas () {
+    //     cnv.width  = window.innerWidth
+    //     cnv.height = window.innerHeight
     
-    }
+    // }
 
-    resizeCanvas ()
-    window.addEventListener ('resize', resizeCanvas)
+    // resizeCanvas ()
+    // window.addEventListener ('resize', resizeCanvas)
 
     function reloadPage() {
        location.reload();
@@ -123,61 +124,107 @@
     }
 
     let x = -100
-    cnv.onpointerdown = function drawVideo() {
+
+
+    function drawImage() {
+        
         // ctx.drawImage(video,0,0,cnv.width,cnv.height);
         // ctx.drawImage(video, 0, 240, (x % 800 - 160), 120);
         // ctx.drawImage(video, mouseX, mouseY, 160, 120)
 // video boxes moving
-        ctx.drawVideo(video, (x % 800 - 160), 120, 160, 120);
-        // ctx.drawImage(video, 0, (x % 600 - 120), 160, 120);
-        // ctx.drawImage(video, -(x % 800 - 640), 0, 160, 120);
-        // ctx.drawImage(video, 480, -(x % 600 - 480), 160, 120);
+        ctx.drawImage(video, (x % 800 - 160), 120, 160, 120);
+        ctx.drawImage(video, 0, (x % 600 - 120), 160, 120);
+        ctx.drawImage(video, -(x % 800 - 640), 0, 160, 120);
+        ctx.drawImage(video, 480, -(x % 600 - 480), 160, 120);
         
-        // x++
-        // ctx.fillRect(200, 100, 700, 500);
-        // ctx.fillStyle = 'rgba(100, 0, 240, 0.1)';
-        // ctx.fillRect(220, 120, 660, 460);
-        // ctx.fillStyle = 'rgba(100, 0, 200, 0.2)';
+        x++
+        ctx.fillRect(200, 100, 700, 500);
+        ctx.fillStyle = 'rgba(100, 0, 240, 0.1)';
+        ctx.fillRect(220, 120, 660, 460);
+        ctx.fillStyle = 'rgba(100, 0, 200, 0.2)';
     
 
-        requestAnimationFrame (drawVideo)
+        requestAnimationFrame (drawImage)
     }
-    requestAnimationFrame (drawVideo)
-     
-        const positions = []
+    requestAnimationFrame (drawImage)
 
-    cnv.addEventListener ('mousedown', (event) => {
+    // let xP = (cnv.width /2) -320
+    // let yP = (cnv.height /2) -240
+    // // let x = (cnv.width /2)
+    // let tint = r,g,b
 
-        // object literal syntax 
-        // to create a new object with x and y properties
-        const pos = {
-            x: event.offsetX,
-            y: event.offsetY
-        }
+    
 
-        // add the new object to the positions array
-        positions.push (pos)
-    })
+    // function drawImage () {
+    //     ctx.tint ='rgb'
+    // //  moving videos
+    //     ctx.drawImage (video, xP, yP, 160, 120)
+    //     ctx.drawImage (video, xP, 250, 160, 120)
+    //     ctx.drawImage (video, 320, yP, 160, 120)
+
+    //     // x++
+
+    //     // increment x position by 1
+    //     xP = xP + 1
+    //     yP = yP + 1
+
+    //    // conditional logic
+    //     // if x position is greater than canvas width
+    //     if (xP > (cnv.width /2) +160) {
+
+    //         // reset x position to -100
+    //         xP = (cnv.width /2) -320
+    //     }
+
+    //     if (yP > (cnv.height /2) +120) {
+
+    //         // reset x position to -100
+    //         yP = (cnv.height /2) -120
+    //     }
+
+    // //  purple rectangle
+    //     ctx.fillRect((cnv.width /2) -320, (cnv.height /2) -240, 640, 480);
+    //     ctx.fillStyle = 'rgba(100, 0, 240, 0.1)';
+  
+    //     requestAnimationFrame (drawImage)
+    // }   
+    //  requestAnimationFrame (drawImage)
 
 
-       function drawFrame () {
+    //     const positions = []
+
+    // cnv.addEventListener ('mousedown', (event) => {
+
+    //     // object literal syntax 
+    //     // to create a new object with x and y properties
+    //     const pos = {
+    //         x: event.offsetX,
+    //         y: event.offsetY
+    //     }
+
+    //     // add the new object to the positions array
+    //     positions.push (pos)
+    // })
 
 
-        // iterate through the positions array
-        positions.forEach ((pos) => {
+    //    function drawFrame () {
 
-            // add a random offset to the x and y positions
-            const xPos = pos.x 
-            const yPos = pos.y
 
-            ctx.drawImage (cursorImg, xPos, yPos)
+    //     // iterate through the positions array
+    //     positions.forEach ((pos) => {
 
-        })
+    //         // add a random offset to the x and y positions
+    //         const xPos = pos.x 
+    //         const yPos = pos.y
 
-        requestAnimationFrame (drawFrame)
-    }
+    //         ctx.drawImage (cursorImg, xPos, yPos)
 
-    requestAnimationFrame (drawFrame)
+    //     })
+
+    //     requestAnimationFrame (drawFrame)
+    // }
+
+    // requestAnimationFrame (drawFrame)
   
   
 
