@@ -11,10 +11,9 @@
     <div id = "camera-container" style = "display: none;">
         <video id = "webcam" autoplay playsinline></video>
     </div>
-    <audio controls>
-        <source id ="music"  src="jazz.ogg" type="audio/ogg">
-        <source id ="music"  src="jazz.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="myAudio">
+  <source src="jazz.mp3" type="audio/mpeg">
+   </audio>
 
     <style>
         body {
@@ -63,7 +62,7 @@
         <div id = "drop-box"></div>
     </div>
 
-    <button onclick="playAudio()" type="button">Play Video</button>
+    
 
     <script>
 
@@ -92,7 +91,17 @@
                 window.location.href = "https://s4290237.github.io/Assignment_2/mediaPlayer_P1.html";
             }
         };
+
+  window.onload = function() {
+    var audio = document.getElementById("myAudio");
+    audio.muted = true; // Required by most browsers for onload playback
+    audio.play().catch(error => {
+      console.log("Autoplay blocked:", error);
+    });
+  };
     </script>
+
+
 
 
 </body>
@@ -102,12 +111,6 @@
 
 <script>
 
-
-    let sound = document.getElementById("music"); 
-
-    function playAudio() { 
-        sound.play(); 
-    } 
 
     const cnv = document.getElementById ('Canvas');
     const ctx = cnv.getContext ('2d');
