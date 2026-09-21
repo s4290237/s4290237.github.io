@@ -14,7 +14,7 @@
     <audio id="sound3" src="flute.mp3" autoplay loop></audio>
     <div>
        <audio id="sound" src="jazz.mp3"></audio>
-       <audio id="sound2" src="chill.mp3"></audio>
+       <audio id="sound2" src="talking.mp3"></audio>
     </div>
 
 
@@ -127,7 +127,7 @@
     function drawFrame(){
 
     cnv.addEventListener ('mousedown', (event) => {
-        ctx.drawImage (cursorImg, mouseX, mouseY, 45, 45);
+        ctx.drawImage (cursorImg, mouseX , mouseY, 45 , 45);
     })
         requestAnimationFrame (drawFrame);
     }
@@ -230,10 +230,10 @@
 
     stop_button.addEventListener ('click',function playAudio()  {
      // Get the audio element by its ID
-       const audio = document.getElementById('sound2');
+        const audio = document.getElementById('sound2');
   
       // Play the audio file
-       audio.play()
+        audio.play()
 
     })
 
@@ -244,31 +244,22 @@
         ctx.fillRect ((cnv.width /2) -320, (cnv.height /2) -240, 640, 480);
         ctx.fillStyle = 'rgba(100, 0, 240, 0.1)';
 
-        
-
         const gradient = ctx.createLinearGradient(0, 0, 0, cnv.height);
-         gradient.addColorStop("0", 'red');
-         gradient.addColorStop("1.0", 'white');
+        gradient.addColorStop("0", 'red');
+        gradient.addColorStop("1.0", 'white');
 
     // Fill with gradient
-       ctx.strokeStyle = gradient;
-       ctx.lineWidth = 5;
-       ctx.strokeRect((cnv.width /2) -320, (cnv.height /2) -240, 640, 480);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 5;
+        ctx.strokeRect((cnv.width /2) -320, (cnv.height /2) -240, 640, 480);
         requestAnimationFrame (drawImage)
     }
     requestAnimationFrame (drawImage)
 
 
     
-    pig_button.addEventListener('click', 
-    function reloadPage() {
+    pig_button.addEventListener('click', function reloadPage() {
         location.reload();
-    
     });
-
-
-
-    
-
 
 </script>
