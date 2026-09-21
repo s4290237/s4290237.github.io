@@ -11,6 +11,7 @@
     <div id = "camera-container" style = "display: none;">
         <video id = "webcam" autoplay playsinline></video>
     </div>
+    <audio id="sound2" src="chill.mp3" autoplay loop></audio>
     <audio id="sound" src="jazz.mp3"></audio>
 
     <style>
@@ -191,42 +192,42 @@
         requestAnimationFrame (drawImagePlay)
     }, { once: true });
 
-    pause_button.addEventListener('click', function drawImagePause(){
+    // pause_button.addEventListener('click', function drawImagePause(){
     
 
-        ctx.drawImage (video, xP, (cnv.height /2) +60, 160, 120);
+    //     ctx.drawImage (video, xP, (cnv.height /2) +60, 160, 120);
 
 
-        // ctx.drawImage (video, (-xP)+((cnv.width /2) +425), (cnv.height /2) +240, 160, 120);
+    //     // ctx.drawImage (video, (-xP)+((cnv.width /2) +425), (cnv.height /2) +240, 160, 120);
 
-        ctx.drawImage (cursorImg, xP +110, (cnv.height /2) -20, 45, 45);
-
-
-        ctx.drawImage (video, (cnv.width /2) -317, yP, 160, 120);
-
-        // ctx.drawImage (video, (cnv.width /2) +157, (-yP)+((cnv.height /2)+260), 160, 120);
+    //     ctx.drawImage (cursorImg, xP +110, (cnv.height /2) -20, 45, 45);
 
 
-        // increment x position by 1
-        xP = xP + xspeed
-        yP = yP + yspeed
+    //     ctx.drawImage (video, (cnv.width /2) -317, yP, 160, 120);
 
-       // conditional logic
-        // if x position is greater than canvas width
-        if (xP == (cnv.width /2) +160 || xP == (cnv.width /2) -400) {
+    //     // ctx.drawImage (video, (cnv.width /2) +157, (-yP)+((cnv.height /2)+260), 160, 120);
 
-            xspeed = xspeed * -1
 
-        } 
+    //     // increment x position by 1
+    //     xP = xP + xspeed
+    //     yP = yP + yspeed
 
-        if (yP == (cnv.height /2) +120 || yP == (cnv.height /2) -300) {
+    //    // conditional logic
+    //     // if x position is greater than canvas width
+    //     if (xP == (cnv.width /2) +160 || xP == (cnv.width /2) -400) {
 
-            yspeed = yspeed * -1
-        }
+    //         xspeed = xspeed * -1
 
-        requestAnimationFrame (drawImagePause)
+    //     } 
 
-    }, { once: true });
+    //     if (yP == (cnv.height /2) +120 || yP == (cnv.height /2) -300) {
+
+    //         yspeed = yspeed * -1
+    //     }
+
+    //     requestAnimationFrame (drawImagePause)
+
+    // }, { once: true });
 
     
 
@@ -245,7 +246,7 @@
         ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +425),yP, 45, 45);
         ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2)+260), 45, 45);
 
-        ctx.drawImage (video, (cnv.width /2) +157, (-yP)+((cnv.height /2)+260), 160, 120);
+        // ctx.drawImage (video, (cnv.width /2) +157, (-yP)+((cnv.height /2)+260), 160, 120);
 
         // increment x position by 1
         xP = xP + xspeed
@@ -303,12 +304,7 @@
   
   // Play the audio file
   audio.play()
-    // .then(() => {
-    //   console.log("Audio is playing successfully!");
-    // })
-    // .catch((error) => {
-    //   console.error("Playback failed. This usually happens if the user hasn't interacted with the page yet:", error);
-    // });
+
 })
 
     
