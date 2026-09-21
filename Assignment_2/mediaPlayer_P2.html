@@ -11,7 +11,7 @@
     <div id = "camera-container" style = "display: none;">
         <video id = "webcam" autoplay playsinline></video>
     </div>
-    <audio id="sound" src="jazz.mp3" autoplay loop></audio>
+    <audio id="sound" src="jazz.mp3"></audio>
 
     <style>
         body {
@@ -164,7 +164,7 @@
     let yspeed = 1
 
 
-    play_button.addEventListener('click', function drawImagePlay() {
+    pause_button.addEventListener('click', function drawImagePlay() {
     
         ctx.drawImage (video, xP, yP, 160, 120);
 
@@ -297,19 +297,19 @@
     
     });
 
-//     function playAudio() {
-//   // Get the audio element by its ID
-//   const audio = document.getElementById("music");
+   play_button.addEventListener ('click',function playAudio()  {
+  // Get the audio element by its ID
+  const audio = document.getElementById('sound');
   
-//   // Play the audio file
-//   audio.play()
-//     .then(() => {
-//       console.log("Audio is playing successfully!");
-//     })
-//     .catch((error) => {
-//       console.error("Playback failed. This usually happens if the user hasn't interacted with the page yet:", error);
-//     });
-// }
+  // Play the audio file
+  audio.play()
+    // .then(() => {
+    //   console.log("Audio is playing successfully!");
+    // })
+    // .catch((error) => {
+    //   console.error("Playback failed. This usually happens if the user hasn't interacted with the page yet:", error);
+    // });
+})
 
     
 
