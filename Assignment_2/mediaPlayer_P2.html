@@ -151,7 +151,7 @@
     let yspeed = 1
 
 
-    play_button.addEventListener('click', function drawImage() {
+    play_button.addEventListener('click', function drawImagePlay() {
         
         ctx.drawImage (video, xP, yP, 160, 120);
 
@@ -175,10 +175,11 @@
             yspeed = yspeed * -1
         }
 
-        requestAnimationFrame (drawImage)
+        requestAnimationFrame (drawImagePlay)
     }, { once: true });
 
-    pause_button.addEventListener('click', function drawImage() {
+    pause_button.addEventListener('click', function drawImagePause(){
+    
 
         ctx.drawImage (video, xP, (cnv.height /2) +60, 160, 120);
 
@@ -210,9 +211,11 @@
             yspeed = yspeed * -1
         }
 
-        requestAnimationFrame (drawImage)
+        requestAnimationFrame (drawImagePause)
 
     }, { once: true });
+
+    
 
         stop_button.addEventListener('click', function drawImage() {
 
@@ -228,7 +231,8 @@
         // ctx.drawImage (video, xP, yP, 160, 120);
         ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +425),yP, 45, 45);
         ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2)+260), 45, 45);
-        ctx.drawImage (video, (-xP)+((cnv.width /2) +425), (-yP)+((cnv.height /2)+260), 160, 120);
+
+        ctx.drawImage (video, (cnv.width /2) +157, (-yP)+((cnv.height /2)+260), 160, 120);
 
         // increment x position by 1
         xP = xP + xspeed
