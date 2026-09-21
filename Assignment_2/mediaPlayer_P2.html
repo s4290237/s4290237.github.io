@@ -3,7 +3,6 @@
 
 <head>
     <title>ARTWEBSITE</title>
-
 </head>
 
 <body>
@@ -11,6 +10,7 @@
     <div id = "camera-container" style = "display: none;">
         <video id = "webcam" autoplay playsinline></video>
     </div>
+
     <audio id="sound2" src="chill.mp3" autoplay loop></audio>
     <audio id="sound" src="jazz.mp3"></audio>
 
@@ -53,21 +53,24 @@
         }
     </style>
 
+<!-- Creating a navigation bar outside of the canvas for button elements -->
+
     <div class ="sticky">
-        <img id ="pig" src= "pig.png" style=" left:150px; width: 50px;">
-        <img id ="pause" src= "pause.png" style=" height: 30px; left: 100px;">
-        <img id ="play" src= "play.png" style=" height: 30px; left: 65px;">
-        <img id ="stop" src="stop.png" style=" height: 30px; left: 25px;">
+        
+        <img id = "pause" src = "pause.png" style = "height: 30px; left: 100px;">
+        <img id = "play" src = "play.png" style = "height: 30px; left: 65px;">
+        <img id = "stop" src ="stop.png" style = "height: 30px; left: 25px;">
+
+        <img id = "pig" src = "pig.png" style = "left: 150px; width: 50px;">
         <div id = "drop-box"></div>
     </div>
 
     
-
+<!-- Ondrop event to exit the house: takes pig back to the 'outside' -->
     <script>
 
-
         const target = document.getElementById ('drop-box');
-            // Prevent browser defaults to allow dropping
+
         window.ondragover = (event) => event.preventDefault ();
         window.ondrop = (event) => event.preventDefault ();
 
@@ -78,38 +81,25 @@
             event.preventDefault();
             target.classList.remove ('hover');
 
-            // const file = event.dataTransfer.files[0];
-            
-            // Confirm it's an image file
             if (target.ondrop) {
-                // Optional: Store the image metadata or dataURL in localStorage 
-                // so the next page can read it when it loads.
-               
-
-                // Start / Navigate to the new webpage
+                //Navigate to the new webpage
                 window.location.href = "https://s4290237.github.io/Assignment_2/mediaPlayer_P1.html";
             }
         };
 
     </script>
-
-
-
-
 </body>
 
-
+<!-- Creating an interacting space with confusing controls -->
 
 
 <script>
-
-
     const cnv = document.getElementById ('Canvas');
     const ctx = cnv.getContext ('2d');
     cnv.width  = window.innerWidth
     cnv.height = window.innerHeight
 
-// star mouse
+    // star mouse
     cnv.style.cursor = 'none';
 
     const cursorImg = new Image();
@@ -129,7 +119,7 @@
     function redrawCanvas() {
         ctx.drawImage (cursorImg, mouseX, mouseY, 15, 15);
     }
-// star stamp
+    // star stamp
     function drawFrame(){
 
     cnv.addEventListener ('mousedown', (event) => {
@@ -139,21 +129,23 @@
     }
     requestAnimationFrame (drawFrame)
 
+ // customisation of the cursor for interactive and aesthetic purposes
+
     const video = document.getElementById('webcam');
-// Request permission to access the video stream
+        // Request permission to access the video stream
         navigator.mediaDevices.getUserMedia({ video: true, audio: false })
         .then((stream) => {
         // Assign the camera stream to the video element
         video.srcObject = stream;
     })
 
+    // button assignment for functions
     const stop_button = document.getElementById ('stop');
     const play_button = document.getElementById ('play');
     const pause_button = document.getElementById ('pause');
 
     const pig_button = document.getElementById ('pig');
-
-    const music = document.getElementById('sound');
+    const music = document.getElementById ('sound');
 
 
 
@@ -165,9 +157,11 @@
     let yspeed = 1
 
 
-    pause_button.addEventListener('click', function drawImagePlay() {
+    play_button.addEventListener('click', function drawImagePlay() {
     
         ctx.drawImage (video, xP, yP, 160, 120);
+        ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +425),yP, 45, 45);
+        ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2)+260), 45, 45);
 
         // increment x position by 1
         xP = xP + xspeed
@@ -192,44 +186,15 @@
         requestAnimationFrame (drawImagePlay)
     }, { once: true });
 
-    // pause_button.addEventListener('click', function drawImagePause(){
-    
 
-    //     ctx.drawImage (video, xP, (cnv.height /2) +60, 160, 120);
+    pause_button.addEventListener ('click',function playAudio()  {
+     // Get the audio element by its ID
+       const audio = document.getElementById('sound');
+  
+      // Play the audio file
+       audio.play()
 
-
-    //     // ctx.drawImage (video, (-xP)+((cnv.width /2) +425), (cnv.height /2) +240, 160, 120);
-
-    //     ctx.drawImage (cursorImg, xP +110, (cnv.height /2) -20, 45, 45);
-
-
-    //     ctx.drawImage (video, (cnv.width /2) -317, yP, 160, 120);
-
-    //     // ctx.drawImage (video, (cnv.width /2) +157, (-yP)+((cnv.height /2)+260), 160, 120);
-
-
-    //     // increment x position by 1
-    //     xP = xP + xspeed
-    //     yP = yP + yspeed
-
-    //    // conditional logic
-    //     // if x position is greater than canvas width
-    //     if (xP == (cnv.width /2) +160 || xP == (cnv.width /2) -400) {
-
-    //         xspeed = xspeed * -1
-
-    //     } 
-
-    //     if (yP == (cnv.height /2) +120 || yP == (cnv.height /2) -300) {
-
-    //         yspeed = yspeed * -1
-    //     }
-
-    //     requestAnimationFrame (drawImagePause)
-
-    // }, { once: true });
-
-    
+    })
 
         stop_button.addEventListener('click', function drawImage() {
 
@@ -298,14 +263,7 @@
     
     });
 
-   play_button.addEventListener ('click',function playAudio()  {
-  // Get the audio element by its ID
-  const audio = document.getElementById('sound');
-  
-  // Play the audio file
-  audio.play()
 
-})
 
     
 
