@@ -192,8 +192,8 @@
 
         pause_button.addEventListener('click', function drawImagePlay() {
  
-        ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +640),yP, 45, 45);
-        ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2) +480), 45, 45);
+        ctx.drawImage (cursorImg, (-xP)+((cnv.width /2) +540),yP, 45, 45);
+        ctx.drawImage (cursorImg, xP, (-yP)+((cnv.height /2) +335), 45, 45);
 
         // increment x position by 1
         xP = xP + xspeed
@@ -242,7 +242,7 @@
     function drawImage (){
     //  purple rectangle
         ctx.fillRect ((cnv.width /2) -320, (cnv.height /2) -240, 640, 480);
-        ctx.fillStyle = 'rgba(100, 0, 240, 0.1)';
+        ctx.fillStyle = 'rgba(100, 45, 144, 0.1)';
 
         const gradient = ctx.createLinearGradient(0, 0, 0, cnv.height);
         gradient.addColorStop("0", 'red');

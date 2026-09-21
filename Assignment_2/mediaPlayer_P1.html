@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <title>ARTWEBSITE home</title>
         <style>
@@ -27,20 +28,21 @@
             left: 40px;
             width: 100px;
 
-        } */
+        } 
     </style>
 </head>
 
 <body>
 
     <img id = "pig" src = "pig.png" draggable = "true" ondragstart = "dragstartHandler(event)" width = "50px">
+
     <img id = "home" src = "home.png">
     <div id = "drop-box"></div>
 
     <script>
 
         const target = document.getElementById ('drop-box');
-            // Prevent browser defaults to allow dropping
+        
         window.ondragover = (event) => event.preventDefault ();
         window.ondrop = (event) => event.preventDefault ();
 
@@ -51,18 +53,11 @@
             event.preventDefault();
             target.classList.remove ('hover');
 
-            // const file = event.dataTransfer.files[0];
-            
-            // Confirm it's an image file
             if (target.ondrop) {
-                // Optional: Store the image metadata or dataURL in localStorage 
-                // so the next page can read it when it loads.
-               
-
-                // Start / Navigate to the new webpage
                 window.location.href = "https://s4290237.github.io/Assignment_2/mediaPlayer_P2.html";
             }
         };
     </script>
 </body>
+
 </html>
