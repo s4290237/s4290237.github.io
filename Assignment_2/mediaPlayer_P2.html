@@ -11,9 +11,10 @@
         <video id = "webcam" autoplay playsinline></video>
     </div>
 
-    <audio id="sound2" src="chill.mp3" autoplay loop></audio>
+    <audio id="sound3" src="flute.mp3" autoplay loop></audio>
     <div>
        <audio id="sound" src="jazz.mp3"></audio>
+       <audio id="sound2" src="chill.mp3"></audio>
     </div>
 
 
@@ -227,6 +228,15 @@
 
     })
 
+    stop_button.addEventListener ('click',function playAudio()  {
+     // Get the audio element by its ID
+       const audio = document.getElementById('sound2');
+  
+      // Play the audio file
+       audio.play()
+
+    })
+
 
 
     function drawImage (){
@@ -240,7 +250,7 @@
          gradient.addColorStop("0", 'red');
          gradient.addColorStop("1.0", 'white');
 
-// Fill with gradient
+    // Fill with gradient
        ctx.strokeStyle = gradient;
        ctx.lineWidth = 5;
        ctx.strokeRect((cnv.width /2) -320, (cnv.height /2) -240, 640, 480);
