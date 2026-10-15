@@ -23,6 +23,10 @@
      font-family: avenir, sans-serif;
       text-align: left;
       font-size: 20px;
+
+      overflow: hidden;
+      cursor: none;
+      background-color: black;
      
     }
 
@@ -36,11 +40,12 @@
       transform: translate(-50%, -50%);
       animation: fadeOut 0.8s ease-out forwards;
     }
-     @fadeOut {
+     @keyframes fadeOut {
       to {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.5);
       }
+    }
 
 </style> 
     
@@ -52,12 +57,10 @@
     <p><a class="ex4" >This link changes font-family</a></p>
     <p><a class="ex5" >This link changes text-decoration</a></p>
 
-    
+  <script>
+   const colors = ['black', 'white', 'red']; 
 
-</body>
-<script>
-  const colors = [black, white, red]; 
-  document.addEventListener('mousemove', function(e) {
+   document.addEventListener('mousemove', function(e) {
     const trail = document.createElement('div');
     trail.className = 'trail';
 
@@ -69,10 +72,15 @@
 
     document.body.appendChild(trail);
 
-    sestTimeout(function() {
+    setTimeout(function() {
       trail.remove();
     }, 800);
+
   });
   
-</script>
-</html>    
+  </script>
+
+</body>
+
+
+</html>
