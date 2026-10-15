@@ -15,7 +15,7 @@
   a.ex2:hover, a.ex2:active {font-size: 150%; font-family: Impact;}
   a.ex3:hover, a.ex3:active {color: white;background: red;}
   a.ex4:hover, a.ex4:active {font-family: avenir;}
-  a.ex5:visited, a.ex5:link {text-decoration: none;}
+  
 
     body {
       margin: 0;
@@ -26,17 +26,18 @@
 
       overflow: hidden;
       cursor: none;
-      background-color: black;
      
     }
 
     .trail {
       position: fixed;
-      width: 10px;
-      height: 10px;
-      border-radius: 0%;
+      background-color: black;
+      
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
       pointer-events: none;
-      opacity: 0.5;
+      opacity: 0.8;
       transform: translate(-50%, -50%);
       animation: fadeOut 0.8s ease-out forwards;
     }
@@ -58,11 +59,19 @@
     <p><a class="ex5" >This link changes text-decoration</a></p>
 
   <script>
-   const colors = ['black', 'white', 'red']; 
+  
+   const sizes = ['6px', '10px', '20px']; 
 
    document.addEventListener('mousemove', function(e) {
     const trail = document.createElement('div');
     trail.className = 'trail';
+
+    // const color = colors[Math.floor(Math.random() * colors.length)];
+    // trail.style.backgroundColor = color;
+
+    const size = sizes[Math.floor(Math.random() * sizes.length)];
+    trail.style.width = size;
+    trail.style.height = size;
 
     const spread  = 20;
     const offsetX = (Math.random() - 0.5) * spread; 
