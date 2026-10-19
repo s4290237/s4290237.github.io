@@ -5,31 +5,150 @@
 </head>
 
 <body>
-    
-    <words id="words" src="nounlist.txt"></words>
+     <!-- HTML Element -->
+    <div id="floating-text">Floating Text Effect</div>
 
-    <!-- The container where the random text will be printed -->
-    <div id="text-display">Loading text...</div>
+     <!-- <p id = "txt" style=" font-size: 20px;" >text</p> -->
+     <!-- <p>jhfkjahdjfhjf <button id = "txt" >text</button> akgbkdfgkhdfbgdkh</p> -->
+</div>
 
-    <!-- Optional button to change the text manually -->
-    <button onclick="printRandomText()">Show New Text</button>
-    <script>
-        // const textOptions = document.getElementById ('words')
-        //     function printRandomText() {
-        //     // Pick a random index from the array
-        //     const randomIndex = Math.floor(Math.random()* textOptions.length);
-            
-        //     // Print the text inside the HTML element with id="text-display"
-        //     document.getElementById("text-display").innerText = textOptions[randomIndex];
-        // }
-        // window.onload = printRandomText;
+    <button id = "text"> text</button>
 
-    function printRandomText () {
-        const randomDecimal = Math.random ()
-        const randomInteger = Math.floor (randomDecimal * 100)
-        document.getElementById("text-display").innerText = `Random Number: ${ randomInteger }`
+     
+
+     <style>
+            button {
+      border: transparent;
+      background-color: transparent;
+      font-family: avenir, sans-serif;
+      font-size: 20px;
+      position: fixed;
     }
-    window.onload = printRandomText;
+
+#overlay:hover {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(50,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: black;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}   
+     </style>
+
+       <p>Sherele Moody, a journalist who has tracked every woman and girl killed in
+    Australia for a decade, is calling for a Royal Commission into femicide, now
+    backed by 95,000 Australians. When asked on-air about this petition, PM
+    Anthony Albanese dismissed the idea, saying "There’s calls for a royal
+    commission about everything". Shaun Azzopardi, whose sister died from
+    domestic violence, says the federal government have "blood on their hands".
+  </p>
+
+
+    <script>
+
+        const button = getElementById ('text');
+        const overlay = getElementById ('overlay');
+
+        button.addEventListener ('mouseover', (e) => {
+            document.className = 'overlay';
+               document.body.appendChild(overlay);
+
+    setTimeout(() => {
+      square.remove();
+    }, 2000);
+        })
+
+
+        
+
+    const positions = []
+
+    const txt = document.getElementById('txt')
+    // txt.addEventListener ('mousemove', (event) => {
+
+    //     const pos = {
+    //         x: event.offsetX,
+    //         y: event.offsetY
+    //     }
+
+    //     positions.push (pos)
+    // })
+
+    // txt.onmouseover = function () {
+
+    //      const pos = {
+    //         x: event.offsetX,
+    //         y: event.offsetY
+
+
+    //     }
+
+    //     positions.push (pos)
+
+
+    //     positions.forEach ((pos) => {
+    //         const xPos = pos.x + Math.random () * .6
+    //         const yPos = pos.y + Math.random () * .6
+
+           
+
+    //         txt.style.left = xPos + 'px'
+    //         txt.style.top = yPos + 'px'
+          
+    //     });
+    //     document.body.appendChild(txt);
+
+    // }
+
+        txt.onmouseover = function () {
+
+    const pos = {
+            x: event.offsetX,
+            y: event.offsetY
+
+
+        }
+
+        positions.push (pos)
+
+
+        positions.forEach ((pos) => {
+
+              
+
+            const xPos = pos.x += (Math.random () - 0.5) * 2
+            const yPos = pos.y += (Math.random () - 0.5) * 2
+
+           txt.style.position = 'fixed'
+
+            txt.style.left = xPos +'px'
+            txt.style.top = yPos  +'px'
+ 
+          
+        });
+        c
+
+    }
+
+
+
+
+
     </script>    
 </body>
 
