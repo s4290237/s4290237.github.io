@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- The action chosen for this prototype was hover. Through investigation, it was 
+   realised that hover or ‘mouseover’ events are commonly implemented on a 
+   wide range of platforms and provide information with subtle communication 
+   and functionality as priority. Taking the action and creating a more intentional 
+   and engaging interaction, incorporating more design to the action had a lot 
+   of potential. Using hover to add dynamic interactivity to what may otherwise 
+   be plain text. -->
 
 <head>
     <title>Hover Suite</title>
-    <link rel="stylesheet" 
-    href="https://fonts.googleapis.com/css?family=roboto">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
 </head>
+  <!-- The suite of effects could be implemented onto various forms of desktop 
+   media as the product is versatile and design focused. Deciding how the suite 
+   of effects could be implemented more broadly and what purpose they could 
+   serve took some further brainstorming. Identifying ways where the 
+   application would elevate user experience. -->
 
 <style>
+  /* Marquee loop, added for aesthetic purposes in showcasing the example texts and how each action can be presented */
   .marquee {
     display: flex;
     width: 440px;
@@ -32,7 +42,9 @@
     to {transform: translate(-100%)
     }
   }
+  /* looping and stylisation tutorial from youtube – https://www.youtube.com/watch?v=BXKMkGhg2Bw */
 
+  /* "news headline" columns */
   .box {
     display: flex;
     justify-content: left;
@@ -43,6 +55,7 @@
     background-color: ivory;
     margin: 10px;
     padding: 10px;
+    cursor: pointer;
   }
   
   body {
@@ -57,6 +70,7 @@
     color: black;
   }
 
+  /* button for the animated effects */
   button {
     border: transparent;
     background-color: transparent;
@@ -66,28 +80,22 @@
     text-align: left;
     color: black;
   }
-    
+  
+  /* cursor trail created using pixelated trail tutorial — https://www.youtube.com/watch?v=lywTnNbRmlM */
   .trail {
     position: fixed;
     background-color: black;
     width: 6px;
     height: 6px;
     border-radius: 50%;
+  
     pointer-events: none;
     opacity: 0.8;
     transform: translate(-50%, -50%);
     animation: fadeOut 0.8s ease-out forwards;
   }
 
-  .trail2 {
-    position: fixed;    
-    width: 6px;
-    pointer-events: none;
-    opacity: 0.8;
-    transform: translate(-50%, -50%);
-    animation: fadeOut 0.8s ease-out forwards;
-  }
-
+  /* with some adjustments also used to create the flashing square effect */
   .square {
     position: fixed;
     background-color: red;
@@ -105,10 +113,12 @@
     }
   }
 
+  /* image shake effect changed to shake selected text */
   #shake:hover {
     animation: shake 0.1s;
     animation-iteration-count: infinite;
     font-size: 32px;
+    cursor: pointer;
   }
   
   @keyframes shake {
@@ -116,11 +126,13 @@
     100% { transform: translate(2px); }
   }
 
+  /* text styling effects */
   #txtblur:hover {
     color: aliceblue;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); /* creates the blurred look */
     transition: all 0.5s ease;
     font-size: 32px;
+    cursor: pointer;
   }
 
   a.bold:hover {
@@ -136,6 +148,7 @@
 
   a.font:hover {
     font-family: "comic sans ms", sans-serif;
+    font-style: bolder;
     letter-spacing: 1px;
     transition: 0.5s;
 
@@ -161,14 +174,20 @@
 </style> 
     
 <body>
+  <!-- Audience engagement on information in this digital age has become more 
+   prominent. Important information such as the news are mostly consumed 
+   online and rarely read further than the headlines. An example of how the 
+   suite of effects could be used in context is in delivering news. Taking 
+   inspiration from news headlines which are used to grasp the attention of the 
+   viewer. Emphasis on attention-grabbing by adding visual effects for 
+   engagement within the main content. Strategically placed effects throughout 
+   the long form text enticing the audience to keep reading. -->
+
   <div class ="marquee">
     <span> SBS NEWS </span>
   </div>
-
-  <!-- <marquee scrolldelay ="60"; scrollamount ="6"; direction = "right"; style= "padding: 20px; font-size: 24px; letter-spacing: 5px";>
-    SBS NEWS SBS NEWS  SBS NEWS  SBS NEWS SBS NEWS SBS NEWS
-  </marquee> -->
-
+  
+  <!-- news headlines with texts effects implemented -->
   <div class = "box">
     <p>
       <a class = "font">Elon Musk unveils new</a><br> 
@@ -216,31 +235,19 @@
     <p>
       <a class ="red">FRACKING:</a><a id ="txtblur"> The impact on our water</a>
     </p>
-
   </div>
 
-
-
- 
-  <!-- <button id = "flash">FLASH RED</button> -->
-  <!-- <button id = "blobs">BLACK BLOBS</button> -->
-
-    <!-- <p><a class="blackbg" >background</a></p> -->
-    <!-- <p>sentence sentence sentence<a class= "font" >font change</a> more more more</p> -->
-
-    <!-- <button id = "shake">text</button> -->
-    
-    <!-- <button id = "scram" style = " top:300px; ">killed</button> -->
-
-
-
-
-
+  <!-- headlines are taken from The Guardian: https://www.theguardian.com/au
+    news social media pages: sbsnews_au and ausconservation-->
 
 </body>
 
 <script>
- // scrambling text effect
+// scrambling text effect - can be versatile when choosing the randomly 
+// assigned scramble characters as well as starting or finishing text. 
+// - https://www.youtube.com/watch?v=7QGoqt7ZIn4
+
+//  symbols chosen over alphabet for a more chaotic effect
   const letters = "@#$%⣿⣿⣿⣿⣿@#%xyz";
   const value = "'FLYING TESLA'";
 
@@ -270,6 +277,34 @@
 
   });
 
+  // black blobs
+    const target2 = document.querySelector('[id="blobs"]');
+
+  target2.addEventListener('mouseleave', () => {
+  // chosen different sizes rather than colours
+    const sizes = ['10px', '15px', '20px']; 
+
+    document.addEventListener('mousemove', (e) => {
+      const trail = document.createElement('div');
+      trail.className = 'trail';
+
+      const size = sizes[Math.floor(Math.random() * sizes.length)];
+      trail.style.width = size;
+      trail.style.height = size;
+
+      const spread  = 20;
+      const offsetX = (Math.random() - 0.5) * spread; 
+      const offsetY = (Math.random() - 0.5) * spread;
+      trail.style.left = (e.clientX + offsetX) + 'px';
+      trail.style.top = (e.clientY + offsetY) + 'px';
+
+      document.body.appendChild(trail);
+   
+      setTimeout(() => {
+       trail.remove();
+      }, 800);
+    });
+  });
 
 // red flash effect
   const target = document.querySelector('[id ="flash"]');
@@ -296,37 +331,13 @@
     }, 2000);
   
   });
-
-  // black blobs
-    const target2 = document.querySelector('[id="blobs"]');
-
-  target2.addEventListener('mouseleave', () => {
-    const sizes = ['10px', '15px', '20px']; 
-
-    document.addEventListener('mousemove', (e) => {
-      const trail = document.createElement('div');
-      trail.className = 'trail';
-
-    // const color = colors[Math.floor(Math.random() * colors.length)];
-    // trail.style.backgroundColor = color;
-
-      const size = sizes[Math.floor(Math.random() * sizes.length)];
-      trail.style.width = size;
-      trail.style.height = size;
-
-      const spread  = 20;
-      const offsetX = (Math.random() - 0.5) * spread; 
-      const offsetY = (Math.random() - 0.5) * spread;
-      trail.style.left = (e.clientX + offsetX) + 'px';
-      trail.style.top = (e.clientY + offsetY) + 'px';
-
-      document.body.appendChild(trail);
-   
-      setTimeout(() => {
-       trail.remove();
-      }, 800);
-    });
-
-  });
 </script>
+
+<!-- As the hover effect is a desktop specific function, finding a way to also
+  implement the interaction for hand held devices would be an interesting 
+  design challenge. A potential approach could be using webcam eye tracking 
+  technology that was quite popular at a time. Using eye tracking as a way to 
+  prompt the effects following the pace of reading. However, as it would be v
+  ery intriguing, user privacy and security would be a concern and would need 
+  to be heavily considered in this approach. -->
 </html>
