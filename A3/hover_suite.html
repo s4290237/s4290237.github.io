@@ -11,7 +11,6 @@
 </head>
 
 <style>
-
   .marquee {
     display: flex;
     width: 440px;
@@ -20,12 +19,12 @@
     box-sizing: border-box;
     color: gainsboro;
   }
+
   .marquee span {
     display: inline-block;
     padding-left: 100%;
     animation: marquee 6s linear infinite;
   }
-
 
   @keyframes marquee {
     from { transform: translate(0)
@@ -35,20 +34,15 @@
   }
 
   .box {
-    position: static;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  height: 100px;
-  width: 440px;
-  border: transparent; 
-  background-color: ivory;
-  margin: 10px;
-  padding: 10px;
-  }
-
-  img{
-    display: none;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 100px;
+    width: 440px;
+    border: transparent; 
+    background-color: ivory;
+    margin: 10px;
+    padding: 10px;
   }
   
   body {
@@ -56,14 +50,11 @@
     background-color: oldlace;
     margin: 0;
     padding: 10px;
-    overflow: hidden;
 
     font-family: georgia, serif;
     text-align: left;
     font-size: 28px;
     color: black;
-
-    /* cursor: none; */
   }
 
   button {
@@ -89,11 +80,8 @@
   }
 
   .trail2 {
-    position: fixed;
-    
+    position: fixed;    
     width: 6px;
-    
-    
     pointer-events: none;
     opacity: 0.8;
     transform: translate(-50%, -50%);
@@ -110,7 +98,6 @@
     animation: fadeOut 2s ease-out forwards;
   }
 
-
   @keyframes fadeOut {
     to {
       opacity: 0;
@@ -118,26 +105,35 @@
     }
   }
 
-
   #shake:hover {
     animation: shake 0.1s;
     animation-iteration-count: infinite;
-
+    font-size: 32px;
   }
-
+  
   @keyframes shake {
     50% { transform: translate(-2px) ; }
     100% { transform: translate(2px); }
   }
 
+  #txtblur:hover {
+    color: aliceblue;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); /* creates the blurred look */
+    transition: all 0.5s ease;
+    font-size: 32px;
+  }
 
-
-  a.blackbg:hover {
-    color: white; 
-    background: black; 
-    font-style: italic;
+  a.bold:hover {
+    font-style: bolder;
     transition: 0.5s;
   }
+
+  a.italic:hover {
+    font-style: italic;
+    letter-spacing: 1px;
+    transition: 0.5s;
+  }
+
   a.font:hover {
     font-family: "comic sans ms", sans-serif;
     letter-spacing: 1px;
@@ -155,15 +151,13 @@
     letter-spacing: 1px;
     transition: 0.5s;
   }
-  a.bold:hover {
-    font-style: bolder;
-  }
-  a.italic:hover {
+  a.blackbg:hover {
+    color: white; 
+    background: black; 
+    font-size: 30px;
     font-style: italic;
-    letter-spacing: 1px;
     transition: 0.5s;
   }
-
 </style> 
     
 <body>
@@ -176,54 +170,62 @@
   </marquee> -->
 
   <div class = "box">
-    <p><a class= "font">Elon Musk unveils new</a> <br> <button id = "scram"><a class ="font">..............</a></button>
+    <p>
+      <a class = "font">Elon Musk unveils new</a><br> 
+      <button id = "scram">..............</button>
     </p>
   </div>
 
   <div class = "box">
     <p>
-    <a class ="impact">French protests enter new phase <br><button id = "flash"> <a class ="impact">
-    with violence and looting</a></button>
+     <a class ="impact">Suspect in custody after Haines <br>
+      <button id = "flash"><a class ="impact">'attacked' outside office</a></button>
     </p>
   </div>
 
-   <div class ="marquee"; direction ="right">
-    <span > THE GUARDIAN </span>
+  <div class ="marquee";>
+    <span> THE GUARDIAN </span>
   </div>
 
   <div class = "box">
     <p>
-     <button id = "blobs"><a class ="red">AI is helping</a></button>workplaces more closely <a class="red">monitor employees
-     </a>
-    
+     <button id = "blobs"><a class ="red">AI is helping</a></button>
+     workplaces more closely <a class="red">monitor employees</a>
     </p>
   </div>
 
   <div class ="box">
     <p>
-      <button id = "shake">"Are your bones brittle?</button>If they were, <a class ="italic">how would you know?"</a>
+     <button id = "shake">"Are your bones brittle?</button>
+     If they were, <a class ="italic">how would you know?"</a>
     </p>
   </div>
 
-  <div class = "box">
-    <p>
-      Is it true that... you need to take <a class ="blackbg">10,000 steps</a> a day to be healthy?
-    </p>
-
+  <div class ="marquee";>
+    <span> AUS CONSERVATION</span>
   </div>
+
   <div class ="box">
-  <p>Bird flu has reached Macquarie Island, a World Heritage listed wildlife sanctuary</p>
+    <p>
+     <a class ="impact">Bird flu has reached Macquarie Island,</a> 
+     <a class ="blackbg">a World Heritage listed wildlife sanctuary</a>
+    </p>
   </div>
-  <img id ="banana" src ="banana.png">
 
-  <button id ="t3" >banana</button>
+  <div class ="box">
+    <p>
+      <a class ="red">FRACKING:</a><a id ="txtblur"> The impact on our water</a>
+    </p>
+
+  </div>
+
 
 
  
-  <!-- <button id = "flash" style = "position: fixed; left: 500px; top: 100px;">FLASH RED</button> -->
+  <!-- <button id = "flash">FLASH RED</button> -->
   <!-- <button id = "blobs">BLACK BLOBS</button> -->
 
-    <!-- <p><a class="blackbg" >This link changes color</a></p> -->
+    <!-- <p><a class="blackbg" >background</a></p> -->
     <!-- <p>sentence sentence sentence<a class= "font" >font change</a> more more more</p> -->
 
     <!-- <button id = "shake">text</button> -->
@@ -238,13 +240,9 @@
 </body>
 
 <script>
-
-
-
-  // scrambling text effect
-
-  const letters = "@#$%⣿⣿⣿⣿⣿⣿⣿⣿xyz";
-  const value = "'Flying Tesla'";
+ // scrambling text effect
+  const letters = "@#$%⣿⣿⣿⣿⣿@#%xyz";
+  const value = "'FLYING TESLA'";
 
   let interval = null;
   const element = document.querySelector('[id="scram"]');
@@ -274,7 +272,6 @@
 
 
 // red flash effect
-
   const target = document.querySelector('[id ="flash"]');
 
   target.addEventListener('mouseover', (e) => {
@@ -301,7 +298,6 @@
   });
 
   // black blobs
-
     const target2 = document.querySelector('[id="blobs"]');
 
   target2.addEventListener('mouseleave', () => {
@@ -332,41 +328,5 @@
     });
 
   });
-
-  
-  
-    // const banana = new Image();
-    // banana.src = 'banana.png';
-
-    //   let mouseX = 0;
-    //  let mouseY = 0;
-
-    // target3.addEventListener ('mouseover', (event) => {
-    //     const rect = document.getBoundingClientRect();
-    //     const trail2 = document.createElement('div');
-    //     mouseX = event.clientX - rect.left;
-    //     mouseY = event.clientY - rect.top;
-  
-    //     document.body.appendChild(trail2);
-
-    //     setTimeout(() => {
-    //    trail2.remove();
-    //   }, 800);
-    // });
-
-
-  
-    
-  //   function redrawCanvas() {
-  //       ctx.drawImage (cursorImg, mouseX, mouseY, 15, 15);
-  //   }
-
-  
-
-  
 </script>
-
-
-
-
 </html>
