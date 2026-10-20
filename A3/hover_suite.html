@@ -37,9 +37,11 @@
   }
 
   @keyframes marquee {
-    from { transform: translate(0)
+    from { 
+      transform: translate(0)
     } 
-    to {transform: translate(-100%)
+    to {
+      transform: translate(-100%)
     }
   }
   /* looping and stylisation tutorial from youtube – https://www.youtube.com/watch?v=BXKMkGhg2Bw */
@@ -127,43 +129,42 @@
   }
 
   /* text styling effects */
-  #txtblur:hover {
+
+  /* water effect */
+  #txtblur:hover { 
     color: aliceblue;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); /* creates the blurred look */
     transition: all 0.5s ease;
     font-size: 32px;
     cursor: pointer;
   }
-
-  a.bold:hover {
-    font-style: bolder;
-    transition: 0.5s;
-  }
-
+  /* italic */
   a.italic:hover {
     font-style: italic;
     letter-spacing: 1px;
-    transition: 0.5s;
+    transition: 0.5s; /* transition speed added for smooth effect */
   }
-
+  /* comic sans */
   a.font:hover {
     font-family: "comic sans ms", sans-serif;
     font-style: bolder;
     letter-spacing: 1px;
     transition: 0.5s;
-
   }
+  /* impact */
   a.impact:hover {
     font-family: impact;
     letter-spacing: 1px;
     transition: 0.5s;
   }
+  /* red italic */
   a.red:hover {
     color: firebrick;
     font-style: italic;
     letter-spacing: 1px;
     transition: 0.5s;
   }
+  /* black hichlight */
   a.blackbg:hover {
     color: white; 
     background: black; 
@@ -183,7 +184,7 @@
    engagement within the main content. Strategically placed effects throughout 
    the long form text enticing the audience to keep reading. -->
 
-  <div class ="marquee">
+  <div class = "marquee">
     <span> SBS NEWS </span>
   </div>
   
@@ -191,49 +192,49 @@
   <div class = "box">
     <p>
       <a class = "font">Elon Musk unveils new</a><br> 
-      <button id = "scram">..............</button>
+      <button id = "scram">..............</button> <!-- number of characters should be the same as value in scramble effect -->
     </p>
   </div>
 
   <div class = "box">
     <p>
-     <a class ="impact">Suspect in custody after Haines <br>
-      <button id = "flash"><a class ="impact">'attacked' outside office</a></button>
+     <a class = "impact">Suspect in custody after Haines <br>
+      <button id = "flash"><a class = "impact">'attacked' outside office</a></button>
     </p>
   </div>
 
-  <div class ="marquee";>
+  <div class = "marquee";>
     <span> THE GUARDIAN </span>
   </div>
 
   <div class = "box">
     <p>
-     <button id = "blobs"><a class ="red">AI is helping</a></button>
-     workplaces more closely <a class="red">monitor employees</a>
+     <button id = "blobs"><a class = "red">AI is helping</a></button>
+     workplaces more closely <a class = "red">monitor employees</a>
     </p>
   </div>
 
-  <div class ="box">
+  <div class = "box">
     <p>
      <button id = "shake">"Are your bones brittle?</button>
-     If they were, <a class ="italic">how would you know?"</a>
+     If they were, <a class = "italic">how would you know?"</a>
     </p>
   </div>
 
-  <div class ="marquee";>
-    <span> AUS CONSERVATION</span>
+  <div class = "marquee";>
+    <span> AUS CONSERVATION </span>
   </div>
 
-  <div class ="box">
+  <div class = "box">
     <p>
      <a class ="impact">Bird flu has reached Macquarie Island,</a> 
      <a class ="blackbg">a World Heritage listed wildlife sanctuary</a>
     </p>
   </div>
 
-  <div class ="box">
+  <div class = "box">
     <p>
-      <a class ="red">FRACKING:</a><a id ="txtblur"> The impact on our water</a>
+      <a class = "red">FRACKING:</a><a id = "txtblur"> The impact on our water</a>
     </p>
   </div>
 
@@ -243,34 +244,32 @@
 </body>
 
 <script>
-// scrambling text effect - can be versatile when choosing the randomly 
-// assigned scramble characters as well as starting or finishing text. 
+// scrambling text effect - can be versatile when choosing the randomly assigned scramble characters as well as starting or finishing text. 
 // - https://www.youtube.com/watch?v=7QGoqt7ZIn4
 
-//  symbols chosen over alphabet for a more chaotic effect
-  const letters = "@#$%⣿⣿⣿⣿⣿@#%xyz";
-  const value = "'FLYING TESLA'";
+  const letters = "@#$%⣿⣿⣿⣿⣿@#%xyz"; //  symbols chosen over alphabet for a more chaotic effect
+  const value = "'FLYING TESLA'"; // change scramble value
 
   let interval = null;
-  const element = document.querySelector('[id="scram"]');
+  const element = document.querySelector ('[id="scram"]');
 
   element.addEventListener ('mouseover', (e) => {
     let iteration = 0;
 
-    clearInterval(interval);
-    interval = setInterval(() => {
+    clearInterval (interval);
+    interval = setInterval (() => {
 
       e.target.innerText = e.target.innerText
       .split("")
-      .map((letter, index) => {
+      .map ((letter, index) => {
         if (index < iteration) {
           return value[index];
         } 
-        return letters[Math.floor(Math.random() * 15)];
-      }).join("");
+        return letters [Math.floor(Math.random() * 15)]; // adjust number of symbols in the scramble
+      }).join ("");
 
       if (iteration >= value.length) {
-        clearInterval(interval);
+        clearInterval (interval);
       }
       iteration += 1 / 5;
     }, 10);
@@ -278,17 +277,16 @@
   });
 
   // black blobs
-    const target2 = document.querySelector('[id="blobs"]');
+    const target2 = document.querySelector ('[id="blobs"]');
 
-  target2.addEventListener('mouseleave', () => {
-  // chosen different sizes rather than colours
-    const sizes = ['10px', '15px', '20px']; 
+  target2.addEventListener ('mouseleave', () => { // blobs only appear after passing through the selected words
+    const sizes = ['10px', '15px', '20px']; // chosen different sizes rather than colours
 
-    document.addEventListener('mousemove', (e) => {
-      const trail = document.createElement('div');
+    document.addEventListener ('mousemove', (e) => { // blobs continue for the rest of the visit
+      const trail = document.createElement ('div');
       trail.className = 'trail';
 
-      const size = sizes[Math.floor(Math.random() * sizes.length)];
+      const size = sizes [Math.floor(Math.random() * sizes.length)];
       trail.style.width = size;
       trail.style.height = size;
 
@@ -298,20 +296,20 @@
       trail.style.left = (e.clientX + offsetX) + 'px';
       trail.style.top = (e.clientY + offsetY) + 'px';
 
-      document.body.appendChild(trail);
+      document.body.appendChild (trail);
    
-      setTimeout(() => {
+      setTimeout (() => {
        trail.remove();
       }, 800);
     });
   });
 
 // red flash effect
-  const target = document.querySelector('[id ="flash"]');
+  const target = document.querySelector ('[id ="flash"]');
 
-  target.addEventListener('mouseover', (e) => {
+  target.addEventListener ('mouseover', (e) => {
 
-    const square = document.createElement('div');
+    const square = document.createElement ('div');
     square.className = 'square';
 
     square.style.width = window.innerWidth + 'px';
@@ -324,11 +322,11 @@
     square.style.left = (e.clientX + offsetX) + 'px';
     square.style.top = (e.clientY + offsetY) + 'px';
 
-    document.body.appendChild(square);
+    document.body.appendChild (square);
 
-    setTimeout(() => {
+    setTimeout (() => {
       square.remove();
-    }, 2000);
+    }, 2000); // slower fade out speed
   
   });
 </script>
