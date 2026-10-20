@@ -4,27 +4,61 @@
 <head>
     <title>Hover Suite</title>
     <link rel="stylesheet" 
-    href="https://fonts.googleapis.com/css?family=avenir">
+    href="https://fonts.googleapis.com/css?family=roboto">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 </head>
 
 <style>
-  a.ex1:hover {color: white; background: black; font-style: italic;}
-  a.font:hover {font-family: impact;}
+
+  .marquee {
+    display: flex;
+    width: 440px;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    color: gainsboro;
+  }
+  .marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 6s linear infinite;
+  }
+
+
+  @keyframes marquee {
+    from { transform: translate(0)
+    } 
+    to {transform: translate(-100%)
+    }
+  }
+
+  .box {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100px;
+  width: 440px;
+  border: transparent; 
+  background-color: ivory;
+  margin: 10px;
+  padding: 10px;
+  }
+
   
   
   body {
-    background-color: ivory;
+    place-items: center;
+    background-color: oldlace;
     margin: 0;
     padding: 10px;
     overflow: hidden;
 
-    font-family: avenir, sans-serif;
+    font-family: georgia, serif;
     text-align: left;
-    font-size: 30px;
-    color: midnightblue;
+    font-size: 28px;
+    color: black;
 
     /* cursor: none; */
   }
@@ -33,9 +67,10 @@
     border: transparent;
     background-color: transparent;
     position: relative;
-    font-family: avenir, sans-serif;
-    font-size: 30px;
-    color: midnightblue;
+    font-family: georgia, serif;
+    font-size: 28px;
+    text-align: left;
+    color: black;
   }
     
   .trail {
@@ -68,19 +103,8 @@
     }
   }
 
-img:hover {
-  animation: shake 0.1s;
-  animation-iteration-count: infinite;
-}
-@keyframes shake {
-   
 
-  50% { transform: translate(-2px) ; }
-
-  100% { transform: translate(2px); }
-}
-
-  #txt:hover {
+  #shake:hover {
     animation: shake 0.1s;
     animation-iteration-count: infinite;
 
@@ -91,40 +115,91 @@ img:hover {
     100% { transform: translate(2px); }
   }
 
+
+  a.blackbg:hover {
+    color: white; 
+    background: black; 
+    border-radius: 15%;
+    font-style: italic;
+  }
+  a.font:hover {
+    font-family: "comic sans ms", sans-serif;
+    font-weight: bolder;
+    font-style: italic;
+  }
+  a.impact:hover {
+    font-family: impact;
+    
+  }
+  a.red:hover {
+    color: firebrick;
+    font-style: italic;
+  }
+  a.bold:hover {
+    font-style: bolder;
+  }
+  a.italic:hover {
+    font-style: italic;
+  }
+
 </style> 
     
 <body>
+  <div class ="marquee">
+    <span> SBS NEWS </span>
+  </div>
+
+  <!-- <marquee scrolldelay ="60"; scrollamount ="6"; direction = "right"; style= "padding: 20px; font-size: 24px; letter-spacing: 5px";>
+    SBS NEWS SBS NEWS  SBS NEWS  SBS NEWS SBS NEWS SBS NEWS
+  </marquee> -->
+
+  <div class = "box">
+    <p><a class= "font">Elon Musk unveils new</a> <br> <button id = "scram"><a class ="font">⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿...</a></button>
+    </p>
+  </div>
+
+  <div class = "box">
+    <p>
+    <a class ="impact">French protests enter new phase <br><button id = "flash"> <a class ="impact">
+    with violence and looting</a></button>
+    </p>
+  </div>
+
+   <div class ="marquee"; direction ="right">
+    <span > THE GUARDIAN </span>
+  </div>
+
+  <div class = "box">
+    <p>
+     <button id = "blobs"><a class ="red">AI is helping</a></button>workplaces more closely <a class="red">monitor employees
+     </a>
+    
+    </p>
+  </div>
+
+  <div class ="box">
+    <p>
+      <button id = "shake">"Are your bones brittle?</button>If they were, <a class ="italic">how would you know?"</a>
+    </p>
+  </div>
 
 
  
   <!-- <button id = "flash" style = "position: fixed; left: 500px; top: 100px;">FLASH RED</button> -->
   <!-- <button id = "blobs">BLACK BLOBS</button> -->
 
-  
-
-    <!-- <p><a class="ex1" >This link changes color</a></p> -->
+    <!-- <p><a class="blackbg" >This link changes color</a></p> -->
     <!-- <p>sentence sentence sentence<a class= "font" >font change</a> more more more</p> -->
+
+    <!-- <button id = "shake">text</button> -->
     
-
-    <!-- <button id = "txt">text</button> -->
-    
-
-    <!-- <button id = "txt2" style = " top:300px; ">killed</button> -->
-
-    <img src ="star.png" style = " position: fixed; left: 500px; top: 500px;">
+    <!-- <button id = "scram" style = " top:300px; ">killed</button> -->
 
 
-  <!-- <p>Sherele Moody, a journalist who has tracked every <a class= "font">woman and girl</a><button id = "txt2"><a class="ex1">killed</a></button>in <br>
-  Australia for a decade, is calling for a Royal Commission into <button id = "flash">femicide</button>, now <br>
-  backed by 95,000 Australians. When asked on-air about this petition, <br>
-  <button id = "txt">PM Anthony Albanese</button><a class= "font">dismissed</a> the idea, saying "There’s calls for a royal <br>
-  commission about everything". Shaun Azzopardi, whose sister <a class="ex1">died</a> from <br>
-  <a class="ex1">domestic violence</a>, says the federal government have <button id = "blobs">"blood on their hands"</button>.</p> -->
-<div>
-  <p>
-    <button id = "txt">Elon Musk</button> <a class="ex1">unveils new</a> <button id = "blobs">'Flying Tesla'</button>
-  </p>
-</div>
+
+
+
+
 </body>
 
 <script>
@@ -133,11 +208,11 @@ img:hover {
 
   // scrambling text effect
 
-  const letters = "abcdefghijklmnopqrstuvwxyz";
-  const value = "killed";
+  const letters = "@#$%⣿⣿⣿⣿⣿⣿⣿⣿xyz";
+  const value = "'Flying Tesla'";
 
   let interval = null;
-  const element = document.querySelector('[id="txt2"]');
+  const element = document.querySelector('[id="scram"]');
 
   element.addEventListener ('mouseover', (e) => {
     let iteration = 0;
@@ -151,7 +226,7 @@ img:hover {
         if (index < iteration) {
           return value[index];
         } 
-        return letters[Math.floor(Math.random() * 26)];
+        return letters[Math.floor(Math.random() * 15)];
       }).join("");
 
       if (iteration >= value.length) {
@@ -161,33 +236,6 @@ img:hover {
     }, 10);
 
   });
-
-  //     const txt = document.querySelector('[id="txt"]');
-
-  // txt.addEventListener('mouseover', () => {
-  //   const position = ['-5px', '0px', '5px']; 
-
-
-  //   // const color = colors[Math.floor(Math.random() * colors.length)];
-  //   // trail.style.backgroundColor = color;
-
-  //     const size = sizes[Math.floor(Math.random() * sizes.length)];
-  //     txt.style.width = size;
-  //     txt.style.height = size;
-
-  //     const spread  = 20;
-  //     const offsetX = (Math.random() - 0.5) * spread; 
-  //     // const offsetY = (Math.random() - 0.5) * spread;
-  //     txt.style.left = ( + offsetX) + 'px';
-      
-
-  //     document.body.appendChild(txt);
-   
-  //     setTimeout(function() {
-  //      trail.remove();
-  //     }, 800);
-  //   });
-
 
 
 // red flash effect
@@ -202,7 +250,7 @@ img:hover {
     square.style.width = window.innerWidth + 'px';
     square.style.height = window.innerHeight + 'px';
 
-    const spread  = 20;
+    const spread  = 30;
     const offsetX = (Math.random() - 0.5) * spread; 
     const offsetY = (Math.random() - 0.5) * spread;
 
